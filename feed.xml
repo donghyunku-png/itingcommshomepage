@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title>ITING Communications — AI · GEO · Marketing Insights</title>
+  <link>https://itingcomms.com/</link>
+  <atom:link href="https://itingcomms.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>ITING Communications publishes weekly insights on Generative Engine Optimization (GEO), AI search, digital advertising, and exhibition / esports operations.</description>
+  <language>ko-KR</language>
+  <copyright>© 2026 ITING Communications Inc.</copyright>
+  <managingEditor>sales@itingcomms.com (Donghyun Ku)</managingEditor>
+  <webMaster>sales@itingcomms.com (Donghyun Ku)</webMaster>
+  <pubDate>Tue, 28 Apr 2026 00:00:00 +0900</pubDate>
+  <lastBuildDate>Tue, 28 Apr 2026 00:00:00 +0900</lastBuildDate>
+  <ttl>1440</ttl>
+
+  <item>
+    <title>GEO(Generative Engine Optimization)란 무엇이며 왜 지금 시작해야 하나요?</title>
+    <link>https://itingcomms.com/#aenomize</link>
+    <guid isPermaLink="false">itingcomms-geo-intro-2026-04</guid>
+    <pubDate>Tue, 28 Apr 2026 00:00:00 +0900</pubDate>
+    <description>요약하면, 검색의 40%가 AI에 의해 응답되는 시대에는 SEO만으로 부족합니다. GEO는 ChatGPT, Claude, Perplexity, Gemini, Naver Cue가 답변에서 우리 브랜드를 인용하도록 만드는 작업이며, KDD 2024 연구에 따르면 Cite Sources 전략 적용 시 AI 가시성이 +115% 향상됩니다.</description>
+    <author>sales@itingcomms.com (Donghyun Ku)</author>
+    <category>GEO</category>
+  </item>
+
+  <item>
+    <title>아이팅커뮤니케이션즈는 어떤 회사인가요? — 광고·플랫폼·행사를 한 곳에서</title>
+    <link>https://itingcomms.com/#about</link>
+    <guid isPermaLink="false">itingcomms-company-overview-2026-04</guid>
+    <pubDate>Mon, 27 Apr 2026 00:00:00 +0900</pubDate>
+    <description>2024년 9월 설립된 디지털 광고·플랫폼·이벤트 통합 마케팅 회사. 대표가 풀스택 엔지니어 출신이라 광고 매체 운영부터 자체 GEO 플랫폼 AENOMIZE 개발까지 한 회사 안에서 진행합니다. 설립 1년 만에 흑자 전환했습니다.</description>
+    <author>sales@itingcomms.com (Donghyun Ku)</author>
+    <category>Company</category>
+  </item>
+
+  <item>
+    <title>전시·행사 대행 — 라이엇·넥슨·펍지·KEPCO 100건 이상의 운영 경험</title>
+    <link>https://itingcomms.com/#events</link>
+    <guid isPermaLink="false">itingcomms-events-credentials-2026-04</guid>
+    <pubDate>Sun, 26 Apr 2026 00:00:00 +0900</pubDate>
+    <description>발로란트 케미폭발 팝업스토어, G-STAR 부스시공, 인천 이스포츠 챌린지 스쿨리그, AGF 라스트오리진, KEPCO HRD 컨퍼런스 등 게임·이스포츠·기업 컨퍼런스·정부 행사를 폭넓게 진행합니다.</description>
+    <author>sales@itingcomms.com (Donghyun Ku)</author>
+    <category>Events</category>
+  </item>
+</channel>
+</rss>
