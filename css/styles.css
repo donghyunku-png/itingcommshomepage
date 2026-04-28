@@ -146,7 +146,7 @@ html[data-lang="en"] .lang-toggle .lang-en{color:var(--accent)}
 .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
 .btn.ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}
 .btn.block{width:100%}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;list-style:none;padding:0;margin:0;border-top:1px solid rgba(255,255,255,.18);padding-top:28px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;list-style:none;padding:0;margin:0;border-top:1px solid rgba(255,255,255,.18);padding-top:28px;max-width:760px}
 .hero-stats li{display:flex;flex-direction:column;gap:4px}
 .hero-stats strong{font-size:32px;font-weight:800;color:#fff;letter-spacing:-.02em}
 .hero-stats span{font-size:13px;color:#a8b8dd}
@@ -263,6 +263,31 @@ html[data-lang="en"] .lang-toggle .lang-en{color:var(--accent)}
 .aenomize .data-table tbody tr:hover{background:rgba(58,123,255,.08)}
 
 .aen-cta-line{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.aen-inquiry{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);padding:28px;margin-top:8px;
+}
+.aen-inquiry-title{
+  display:inline-block;padding:6px 14px;border-radius:999px;
+  background:var(--lime);color:var(--navy);font-weight:800;font-size:13.5px;
+  letter-spacing:.04em;margin:0 0 14px;
+}
+.aen-inquiry p{color:#c6d2ee;font-size:15px;line-height:1.7;margin:0 0 14px}
+.aen-inquiry p:last-child{margin-bottom:0;margin-top:18px}
+
+.svc-soon{
+  display:inline-block;padding:5px 12px;border-radius:999px;
+  background:#eef3ff;color:var(--accent);font-weight:700;font-size:13px;
+  border:1px dashed var(--accent);align-self:flex-start;margin-top:auto;
+  letter-spacing:.02em;
+}
+
+.ft-soon{
+  display:inline-block;margin-top:10px;padding:6px 14px;border-radius:999px;
+  background:rgba(198,255,61,.12);color:var(--lime);
+  font-weight:700;font-size:13px;letter-spacing:.04em;
+  border:1px dashed rgba(198,255,61,.45);
+}
 
 /* ----- EVENTS ----- */
 .events{background:var(--white)}
