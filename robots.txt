@@ -28,5 +28,5 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://itingcomms.com/sitemap.xml
-Host: https://itingcomms.com
+Sitemap: https://www.itingcomms.com/sitemap.xml
+Host: https://www.itingcomms.com

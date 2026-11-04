@@ -1,123 +1,49 @@
-# ITING Communications — Official Website
+# ITING Communications website
 
-[itingcomms.com](https://itingcomms.com) 의 공식 홈페이지 소스 코드입니다. 한국어가 기본이며 우상단 토글로 영어 전환을 지원합니다.
+[www.itingcomms.com](https://www.itingcomms.com/)의 정적 웹사이트 소스입니다. GitHub Pages의 기존 CNAME 배포 방식을 유지하며, 외부 패키지 없이 Node.js로 영문 페이지·블로그·RSS·sitemap을 생성합니다.
 
-> 아이팅커뮤니케이션즈는 디지털 광고 대행, 자체 GEO 플랫폼 [AENOMIZE](https://www.aenomize.com), 전시·행사·이스포츠 운영 대행을 통합 제공하는 종합 마케팅 회사입니다.
+## 주요 페이지
 
----
+- `/` — 한국어 홈페이지
+- `/en/` — 서버에서 바로 읽을 수 있는 영문 홈페이지
+- `/blog/` — 회사 소식, GEO, AX, AI 동향
+- `/privacy.html`, `/terms.html` — 정책 페이지
+- `/llms.txt`, `/robots.txt`, `/sitemap.xml`, `/feed.xml` — 발견·배포 보조 파일
 
-## 🧭 사이트 구성
-
-| 섹션 | 설명 |
-|---|---|
-| Hero | "AI 시대의 진정한 성장 파트너" |
-| 사업 영역 ① | **디지털 광고 + 플랫폼 개발 (IT 연동)** |
-| 사업 영역 ② | **GEO 플랫폼 AENOMIZE** — 5대 AI 엔진 모니터링 · 97룰 스코어링 |
-| 사업 영역 ③ | **전시·행사·이스포츠 대행** — Riot / PUBG / Nexon / KEPCO 등 |
-| References | 이벤트 · 디지털 광고 · IT/GEO 클라이언트 |
-| About | CEO · 기술 스택 · 차별점 |
-| Media | YouTube 임베드 · SNS 6종 (YouTube · Instagram · X · Facebook · Threads · AENOMIZE) |
-| FAQ | 7개 Q&A (FAQPage Schema 적용) |
-| Contact | 문의 폼 (HubSpot webhook + mailto fallback) |
-
-## 📦 디렉터리 구조
-
-```
-HOMEPAGE/
-├── index.html          # 메인 페이지
-├── privacy.html        # 개인정보처리방침
-├── terms.html          # 이용약관
-├── 404.html            # (선택)
-├── llms.txt            # AI 크롤러 가이드
-├── robots.txt
-├── sitemap.xml
-├── feed.xml            # RSS 피드
-├── favicon.png
-├── assets/
-│   └── logo.png
-├── css/
-│   └── styles.css
-└── js/
-    └── main.js
-```
-
-## 🌐 SEO / GEO 적용 사항
-
-- ✅ Title 30자 이상, Meta description 70~160자
-- ✅ Canonical · hreflang(ko/en/x-default) · og:description · og:image:alt
-- ✅ Schema.org JSON-LD: `Organization`, `WebSite`, `BreadcrumbList`, `FAQPage`, `Service`
-- ✅ 단일 H1 + H2/H3 계층 (skipping 없음)
-- ✅ 질문형 H2/H3 비율 44% (목표 20% 이상)
-- ✅ AI 추출 트리거 ("요약하면", "핵심은", "정리하면", "결론적으로") 18회
-- ✅ 데이터 표 2종 (97룰 구성·요금제) + 전문가 인용 blockquote (KDD 2024)
-- ✅ 모든 `<img>` alt 텍스트 (한·영 토글)
-- ✅ `llms.txt` (AI 크롤러 가이드) · `robots.txt` (GPTBot · ClaudeBot · PerplexityBot 명시 허용)
-- ✅ `sitemap.xml` · RSS `feed.xml`
-- ✅ `<meta name="author">` 명시
-
-## 🌍 다국어
-
-- 기본: 한국어 (`lang="ko"`)
-- 토글: 우상단 `KO/EN` 버튼 → `localStorage`에 저장
-- URL 파라미터: `?lang=en` / `?lang=ko` 지원
-
-모든 번역은 `data-ko` / `data-en` 속성으로 인라인 관리되며, `js/main.js`의 `applyLanguage()`가 런타임에 교체합니다.
-
-## 📞 Contact 폼 / CRM 연동
-
-`js/main.js`는 두 단계 fallback 전략을 사용합니다.
-
-1. **CRM webhook** — `window.ITING_CRM_ENDPOINT` 가 정의되어 있으면 해당 URL로 JSON POST.
-2. **mailto fallback** — webhook 미설정 또는 실패 시 `sales@itingcomms.com` 으로 메일 클라이언트 자동 작성.
-
-HubSpot Forms 연동 예시 (HTML `<head>` 또는 별도 `config.js`):
-
-```html
-<script>
-  window.ITING_CRM_ENDPOINT = 'https://api.hsforms.com/submissions/v3/integration/submit/<portal-id>/<form-guid>';
-</script>
-```
-
-## 🔧 로컬 실행
-
-순수 정적 파일이라 별도 빌드가 필요 없습니다.
+## 로컬 실행
 
 ```bash
-# Python
+npm run build
+npm run check
 python3 -m http.server 8080
-
-# 또는 npx serve
-npx serve .
 ```
 
-브라우저에서 `http://localhost:8080` 접속.
+브라우저에서 `http://localhost:8080`을 엽니다. 별도 의존성 설치는 필요 없습니다.
 
-## 🚀 배포
+## 블로그 작성
 
-정적 호스팅이면 어디든 가능합니다.
+작성 규칙은 [`content/blog/README.md`](content/blog/README.md)에 있습니다. 한 글당 Markdown 파일 하나를 사용하며, `draft: false`이고 필수 메타데이터 검증을 통과한 글만 독립 URL, 블로그 목록, RSS, sitemap에 생성됩니다.
 
-| 호스팅 | 방법 |
-|---|---|
-| **Vercel** | `vercel --prod` (또는 GitHub 연동) |
-| **Netlify** | drag-and-drop 또는 GitHub 연동 |
-| **Cloudflare Pages** | GitHub 연동 → build command 비움 → output directory `/` |
-| **GitHub Pages** | repo Settings → Pages → branch `main` / `/` |
+비개발자 편집자는 템플릿을 `content/blog/<slug>.md`로 복사해 글을 작성한 뒤 저장소 루트에서 아래 명령 하나를 실행하면 됩니다.
 
-## 📝 라이선스
+```bash
+npm run build && npm run check
+```
 
-비공개 / 사내용. 자세한 내용은 [LICENSE](./LICENSE) 참조.
+검증이 끝나면 `blog/<slug>/index.html`, `blog/index.html`, `feed.xml`, `sitemap.xml`, `en/`의 생성 결과를 원본 Markdown과 함께 검토·커밋합니다.
 
-## 📮 Contact
+중요: 저장소가 공개되어 있으면 `draft: true`인 Markdown도 push된 순간 원문은 외부에서 읽을 수 있습니다. 승인 전 실제 초안은 커밋하거나 공개 브랜치에 push하지 마세요.
 
-- Email: <sales@itingcomms.com>
-- Site: <https://itingcomms.com>
-- AENOMIZE: <https://www.aenomize.com>
-- YouTube: <https://www.youtube.com/@ItingCommunications>
-- Instagram: <https://www.instagram.com/itingcomms/>
-- X (Twitter): <https://x.com/Itingcomms>
-- Facebook: <https://www.facebook.com/profile.php?id=61589024904957>
-- Threads: <https://www.threads.com/@itingcomms>
+공개 전 초안을 포함한 로컬 검토본은 `npm run build:review`로 `/tmp/iting-site-review`에 생성합니다. 검토본은 초안 페이지에 `noindex`와 공개 금지 표식을 붙이며, 공개 RSS·sitemap에는 초안을 넣지 않습니다. 브라우저 CMS와 주 2회 자동 게시 기능은 아직 없으며, 승인된 Markdown을 공개 폴더로 옮긴 뒤 위 빌드·검사와 커밋이 필요합니다.
 
----
+## 콘텐츠 원칙
 
-© 2026 ITING Communications Inc. All rights reserved.
+- 제품·솔루션 공식 명칭은 `GEO Inside`입니다.
+- GEO, 중국 GEO, 법무 GEO 가격은 공개하지 않고 상담 후 안내합니다.
+- AI 언급, 인용, 순위, 문의, 매출을 보장하지 않습니다.
+- 중국 서비스는 현지 실행 파트너와 범위를 협의하며, 중국 플랫폼을 GEO Inside 기본 측정 엔진으로 표시하지 않습니다.
+- 레퍼런스는 승인된 공식 로고만 사용하고 임의의 범위·성과·추천사를 추가하지 않습니다.
+
+## 배포
+
+기존 GitHub Pages 연동과 `CNAME`의 `www.itingcomms.com`을 그대로 사용합니다. 별도 저장소 워크플로 파일은 없으며 GitHub의 내장 `pages-build-deployment`가 `main` 브랜치 push를 감지해 정적 파일을 배포합니다. Pages 쪽에서 이 Node 생성기를 대신 실행하지 않으므로, 반드시 위 명령으로 만든 결과 파일까지 커밋한 뒤 push해야 합니다. 이 저장소에는 배포 토큰이나 외부 CMS 인증 정보가 없습니다.

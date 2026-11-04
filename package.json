@@ -1,0 +1,11 @@
+{
+  "name": "iting-communications-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check": "node scripts/check-site.mjs",
+    "build:review": "node scripts/build-site.mjs --include-drafts --output-root /tmp/iting-site-review",
+    "check:review": "node scripts/check-site.mjs --root /tmp/iting-site-review"
+  }
+}

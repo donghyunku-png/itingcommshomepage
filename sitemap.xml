@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://itingcomms.com/</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://itingcomms.com/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://itingcomms.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://itingcomms.com/"/>
-  </url>
-  <url>
-    <loc>https://itingcomms.com/privacy.html</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://itingcomms.com/terms.html</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.itingcomms.com/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/en/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/blog/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/blog/category/company-news/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/blog/category/geo/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/blog/category/ax/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/blog/category/ai-trends/</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/privacy.html</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/en/privacy.html</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/terms.html</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/en/terms.html</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://www.itingcomms.com/blog/ai-product-choice-shopify/</loc><lastmod>2026-11-04</lastmod></url>
 </urlset>
