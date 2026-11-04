@@ -31,6 +31,19 @@
     revealEls.forEach((element) => element.classList.add('in'));
   }
 
+  const referenceMarquee = document.querySelector('[data-reference-marquee]');
+  const referenceToggle = document.querySelector('.reference-marquee-toggle');
+  if (referenceMarquee && referenceToggle) {
+    referenceToggle.addEventListener('click', () => {
+      const paused = referenceMarquee.classList.toggle('is-paused');
+      referenceToggle.setAttribute('aria-pressed', String(paused));
+      const english = document.documentElement.lang === 'en';
+      referenceToggle.textContent = paused
+        ? (english ? 'Resume reference names' : '회사명 흐름 다시 시작')
+        : (english ? 'Pause reference names' : '회사명 흐름 일시정지');
+    });
+  }
+
   const form = document.getElementById('contactForm');
   if (!form) return;
   const status = document.getElementById('cf-status');

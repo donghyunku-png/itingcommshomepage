@@ -7,6 +7,7 @@
 - `/` — 한국어 홈페이지
 - `/en/` — 서버에서 바로 읽을 수 있는 영문 홈페이지
 - `/blog/` — 회사 소식, GEO, AX, AI 동향
+- `/en/blog/` — 영문 인사이트 목록·카테고리·글
 - `/privacy.html`, `/terms.html` — 정책 페이지
 - `/llms.txt`, `/robots.txt`, `/sitemap.xml`, `/feed.xml` — 발견·배포 보조 파일
 
@@ -22,9 +23,9 @@ python3 -m http.server 8080
 
 ## 블로그 작성
 
-작성 규칙은 [`content/blog/README.md`](content/blog/README.md)에 있습니다. 한 글당 Markdown 파일 하나를 사용하며, `draft: false`이고 필수 메타데이터 검증을 통과한 글만 독립 URL, 블로그 목록, RSS, sitemap에 생성됩니다.
+작성 규칙은 [`content/blog/README.md`](content/blog/README.md)에 있습니다. 한국어 원문과 영문 번역을 한 쌍의 Markdown 파일로 관리하며, `draft: false`이고 필수 메타데이터 검증을 통과한 글만 독립 URL, 블로그 목록, RSS, sitemap에 생성됩니다.
 
-비개발자 편집자는 템플릿을 `content/blog/<slug>.md`로 복사해 글을 작성한 뒤 저장소 루트에서 아래 명령 하나를 실행하면 됩니다.
+비개발자 편집자는 템플릿을 `content/blog/<slug>.md`로 복사해 한국어 글을 작성하고, 같은 slug의 영문 번역을 `content/blog/en/<slug>.md`에 추가한 뒤 저장소 루트에서 아래 명령 하나를 실행하면 됩니다.
 
 ```bash
 npm run build && npm run check
@@ -42,7 +43,7 @@ npm run build && npm run check
 - GEO, 중국 GEO, 법무 GEO 가격은 공개하지 않고 상담 후 안내합니다.
 - AI 언급, 인용, 순위, 문의, 매출을 보장하지 않습니다.
 - 중국 서비스는 현지 실행 파트너와 범위를 협의하며, 중국 플랫폼을 GEO Inside 기본 측정 엔진으로 표시하지 않습니다.
-- 레퍼런스는 승인된 공식 로고만 사용하고 임의의 범위·성과·추천사를 추가하지 않습니다.
+- 레퍼런스는 승인된 회사명만 사용하고 임의의 범위·성과·추천사를 추가하지 않습니다.
 
 ## 배포
 

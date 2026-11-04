@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="en" href="https://www.itingcomms.com/en/">
 <link rel="alternate" hreflang="x-default" href="https://www.itingcomms.com/">
 <script src="/js/locale-redirect.js"></script>
-<link rel="alternate" type="application/rss+xml" title="ITING Communications updates" href="/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="ITING Communications updates" href="/en/feed.xml">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
 <meta property="og:type" content="website">
@@ -94,17 +94,17 @@
       <a href="#packages" data-en="Packages">Packages</a>
       <a href="#references" data-en="References">References</a>
       <a href="#media" data-en="Channels">Channels</a>
-      <a href="/blog/" data-en="Insights">Insights</a>
+      <a href="/en/blog/" data-en="Insights">Insights</a>
       <a href="#contact" data-en="Contact">Contact</a>
     </nav>
     <div class="header-actions">
       <a class="lang-toggle" id="langToggle" href="/" hreflang="ko" lang="ko" aria-label="이 페이지를 한국어로 보기">KO</a>
-      <a class="cta-mini" href="#contact" data-en="Start a conversation">Start a conversation</a>
+      <a class="cta-mini" href="#contact" data-en="Let's talk">Let's talk</a>
       <button class="nav-burger" type="button" aria-label="메뉴 열기" aria-controls="mobileMenu" aria-expanded="false" id="navBurger"><span></span><span></span><span></span></button>
     </div>
   </div>
   <div class="mobile-menu" id="mobileMenu" hidden>
-    <a href="#services" data-en="Services">Services</a><a href="#geo">GEO Inside</a><a href="#packages" data-en="Packages">Packages</a><a href="#references" data-en="References">References</a><a href="#media" data-en="Channels">Channels</a><a href="/blog/" data-en="Insights">Insights</a><a href="#contact" data-en="Contact">Contact</a>
+    <a href="#services" data-en="Services">Services</a><a href="#geo">GEO Inside</a><a href="#packages" data-en="Packages">Packages</a><a href="#references" data-en="References">References</a><a href="#media" data-en="Channels">Channels</a><a href="/en/blog/" data-en="Insights">Insights</a><a href="#contact" data-en="Contact">Contact</a>
   </div>
 </header>
 
@@ -171,19 +171,20 @@
   <div class="container">
     <p class="kicker" data-en="References">References</p>
     <h2 id="references-h2" data-en="Selected references">Selected references</h2>
-    <p class="lead" data-en="Logos are shown only to identify approved references. They do not imply a particular scope, result, testimonial, or endorsement.">Logos are shown only to identify approved references. They do not imply a particular scope, result, testimonial, or endorsement.</p>
-    <ul class="reference-logo-grid" role="list">
-      <li class="reference-logo"><img src="/assets/references/creamworks.png" alt="Creamworks" loading="lazy" decoding="async"></li>
-      <li class="reference-logo"><img src="/assets/references/newcell-clinic.png" alt="Newcell Clinic" data-en-alt="Newcell Clinic" loading="lazy" decoding="async"></li>
-      <li class="reference-logo reference-logo-continental"><img src="/assets/references/continental.svg" alt="Continental" loading="lazy" decoding="async"></li>
-      <li class="reference-logo reference-logo-dark"><img src="/assets/references/niance.png" alt="NIANCE Switzerland" loading="lazy" decoding="async"></li>
-      <li class="reference-logo"><img class="reference-logo-vertical" src="/assets/references/aeeve.png" alt="Aeeve" loading="lazy" decoding="async"></li>
-      <li class="reference-logo"><img src="/assets/references/kyochon-1991.png" alt="Kyochon 1991" loading="lazy" decoding="async"></li>
-      <li class="reference-logo"><img src="/assets/references/desimone.jpg" alt="De Simone" loading="lazy" decoding="async"></li>
-      <li class="reference-logo"><img src="/assets/references/golden-blue.jpg" alt="Golden Blue" loading="lazy" decoding="async"></li>
-      <li class="reference-logo reference-logo-dark"><img src="/assets/references/zero.svg" alt="ZERO" loading="lazy" decoding="async"></li>
-      <li class="reference-logo"><img src="/assets/references/barobaro-loan.png" alt="바로바로론" loading="lazy" decoding="async"></li>
-    </ul>
+    <p class="lead" data-en="Company names identify approved references only. They do not imply a particular scope, result, testimonial, or endorsement.">Company names identify approved references only. They do not imply a particular scope, result, testimonial, or endorsement.</p>
+    <button class="reference-marquee-toggle" type="button" aria-controls="reference-name-track" aria-pressed="false" data-en="Pause reference names">Pause reference names</button>
+  </div>
+  <div class="reference-marquee" data-reference-marquee>
+    <div class="reference-name-viewport">
+      <div class="reference-name-track" id="reference-name-track">
+        <ul class="reference-name-set" aria-label="Reference company names" data-en-label="Reference company names">
+          <li>뉴셀의원</li><li>Continental Tire</li><li>Kyochon</li><li>De Simone</li><li>바로크레디트</li><li>Riot Games</li><li>Nexon</li><li>Zeromarket</li><li>Golden Blue</li><li>Creamworks</li><li>Aquanex Innovation</li><li>Pepperstone</li>
+        </ul>
+        <ul class="reference-name-set" aria-hidden="true">
+          <li>뉴셀의원</li><li>Continental Tire</li><li>Kyochon</li><li>De Simone</li><li>바로크레디트</li><li>Riot Games</li><li>Nexon</li><li>Zeromarket</li><li>Golden Blue</li><li>Creamworks</li><li>Aquanex Innovation</li><li>Pepperstone</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -205,7 +206,7 @@
 </section>
 
 <!-- BLOG_LATEST_START -->
-<section class="section home-insights" id="insights" aria-labelledby="insights-h2"><div class="container"><p class="kicker">ITING INSIGHTS</p><h2 id="insights-h2">최신 인사이트</h2><div class="home-insight-list"><article class="home-insight-card"><div class="blog-meta"><span>AI 동향</span><time datetime="2026-11-04">2026-11-04</time></div><h3><a href="/blog/ai-product-choice-shopify/">같은 상품을 보여줘도 AI의 선택은 같지 않았습니다</a></h3><p>쇼피파이 상품 선택 실험으로 다시 보는 AI 노출과 구매 후보의 차이</p><a class="svc-link" href="/blog/ai-product-choice-shopify/">글 읽기 →</a></article></div><p class="home-insights-more"><a class="svc-link" href="/blog/">모든 인사이트 보기 →</a></p></div></section>
+<section class="section home-insights" id="insights" aria-labelledby="insights-h2"><div class="container"><p class="kicker">ITING INSIGHTS</p><h2 id="insights-h2">Latest insights</h2><div class="home-insight-list"><article class="home-insight-card"><div class="blog-meta"><span>AI Trends</span><time datetime="2026-11-04">2026-11-04</time></div><h3><a href="/en/blog/ai-product-choice-shopify/">The Same Products Did Not Lead AI Models to the Same Choice</a></h3><p>Revisiting the difference between AI visibility and purchase consideration through a Shopify product-selection experiment</p><a class="svc-link" href="/en/blog/ai-product-choice-shopify/">Read article →</a></article><article class="home-insight-card"><div class="blog-meta"><span>Company News</span><time datetime="2026-11-04">2026-11-04</time></div><h3><a href="/en/blog/iting-communications-introduction/">Meet ITING Communications: Digital Advertising, GEO and Events</a></h3><p>An introduction to ITING Communications and its work across digital advertising, GEO platform services, exhibitions, and events.</p><a class="svc-link" href="/en/blog/iting-communications-introduction/">Read article →</a></article></div><p class="home-insights-more"><a class="svc-link" href="/en/blog/">View all insights →</a></p></div></section>
 <!-- BLOG_LATEST_END -->
 
 <section class="section faq" id="faq" aria-labelledby="faq-h2">
@@ -213,6 +214,9 @@
     <p class="kicker">FAQ</p><h2 id="faq-h2" data-en="Frequently asked questions about GEO.">Frequently asked questions about GEO.</h2>
     <details class="faq-item"><summary data-en="What is the difference between SEO and GEO?">What is the difference between SEO and GEO?</summary><div data-en="SEO improves discovery and interpretation in search engines. GEO extends that foundation to answer-oriented and generative services by clarifying entities, sources, authorship, and direct answers. They work together.">SEO improves discovery and interpretation in search engines. GEO extends that foundation to answer-oriented and generative services by clarifying entities, sources, authorship, and direct answers. They work together.</div></details>
     <details class="faq-item"><summary data-en="Which engines does GEO Inside measure?">Which engines does GEO Inside measure?</summary><div data-en="The current documented measurement set is ChatGPT, Gemini, and Perplexity. Naver's AI tab is observed under a separate standard. China platforms are a partner-delivered consultation scope, not native measurement integrations.">The current documented measurement set is ChatGPT, Gemini, and Perplexity. Naver's AI tab is observed under a separate standard. China platforms are a partner-delivered consultation scope, not native measurement integrations.</div></details>
+    <details class="faq-item"><summary data-en="What does GEO Inside emphasize when assessing global and local GEO needs?">What does GEO Inside emphasize when assessing global and local GEO needs?</summary><div data-en="GEO Inside connects global-engine measurement with Korean customer context. It reviews locally grounded question candidates, observes Naver's AI tab separately, retains original answers and cited URLs, and turns evidence into contextual action priorities. Fit should be assessed by question design, evidence transparency, repeatability, and the markets and execution scope required—not by an unsupported claim that one approach is universally superior. China work is scoped separately after consultation.">GEO Inside connects global-engine measurement with Korean customer context. It reviews locally grounded question candidates, observes Naver's AI tab separately, retains original answers and cited URLs, and turns evidence into contextual action priorities. Fit should be assessed by question design, evidence transparency, repeatability, and the markets and execution scope required—not by an unsupported claim that one approach is universally superior. China work is scoped separately after consultation.</div></details>
+    <details class="faq-item"><summary data-en="How are measurement questions created and finalized?">How are measurement questions created and finalized?</summary><div data-en="We review the customer's website, products, target keywords, and customer language together with relevant Naver Knowledge iN, cafe and blog material, DataLab search trends, news, and YouTube content when available. AI helps propose question drafts for discovery, comparison, and recommendation stages; a responsible person reviews the evidence and finalizes the set. Not every source is used for every question, and this process does not guarantee a perfectly representative sample of all users.">We review the customer's website, products, target keywords, and customer language together with relevant Naver Knowledge iN, cafe and blog material, DataLab search trends, news, and YouTube content when available. AI helps propose question drafts for discovery, comparison, and recommendation stages; a responsible person reviews the evidence and finalizes the set. Not every source is used for every question, and this process does not guarantee a perfectly representative sample of all users.</div></details>
+    <details class="faq-item"><summary data-en="How often is measurement repeated, and what does a 95% confidence interval mean?">How often is measurement repeated, and what does a 95% confidence interval mean?</summary><div data-en="One example configuration repeats one question seven times per engine per day across three global engines for 28 days: 196 observations per engine and 588 across the three engines. This is an example, not a universal default; repetitions, cadence, question review, and reporting are agreed for each engagement. GEO Inside uses Wilson 95% confidence intervals to estimate a range for a measured proportion under defined conditions and statistical assumptions. It is not 95% answer accuracy, factual correctness, or a guaranteed real-world recommendation probability. Repeated answers and model changes can introduce dependence, so results should be interpreted separately by platform, question, and period.">One example configuration repeats one question seven times per engine per day across three global engines for 28 days: 196 observations per engine and 588 across the three engines. This is an example, not a universal default; repetitions, cadence, question review, and reporting are agreed for each engagement. GEO Inside uses Wilson 95% confidence intervals to estimate a range for a measured proportion under defined conditions and statistical assumptions. It is not 95% answer accuracy, factual correctness, or a guaranteed real-world recommendation probability. Repeated answers and model changes can introduce dependence, so results should be interpreted separately by platform, question, and period.</div></details>
     <details class="faq-item"><summary data-en="Can you guarantee a mention or ranking?">Can you guarantee a mention or ranking?</summary><div data-en="No. Third-party services control retrieval, sources, and response generation. We improve public information and monitor observed changes, but do not guarantee mentions, citations, rankings, inquiries, or revenue.">No. Third-party services control retrieval, sources, and response generation. We improve public information and monitor observed changes, but do not guarantee mentions, citations, rankings, inquiries, or revenue.</div></details>
     <details class="faq-item"><summary data-en="How is pricing determined?">How is pricing determined?</summary><div data-en="Pricing is provided after consultation because the question set, target market, platforms, content volume, and execution scope differ by project.">Pricing is provided after consultation because the question set, target market, platforms, content volume, and execution scope differ by project.</div></details>
   </div>
@@ -220,7 +224,7 @@
 
 <section class="section contact" id="contact" aria-labelledby="contact-h2">
   <div class="container contact-grid">
-    <div><p class="kicker" data-en="Contact">Contact</p><h2 id="contact-h2" data-en="Tell us what people and AI should understand about your brand.">Tell us what people and AI should understand about your brand.</h2><p data-en="This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.">This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.</p><ul class="contact-info"><li><strong data-en="Email">Email</strong><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></li><li><strong data-en="Location">Location</strong><span data-en="Yeonsu-gu, Incheon, Korea">Yeonsu-gu, Incheon, Korea</span></li></ul></div>
+    <div><p class="kicker" data-en="Contact">Contact</p><h2 id="contact-h2" data-en="What should people—and AI—understand about your brand?">What should people—and AI—understand about your brand?</h2><p data-en="This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.">This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.</p><ul class="contact-info"><li><strong data-en="Email">Email</strong><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></li><li><strong data-en="Location">Location</strong><span data-en="Yeonsu-gu, Incheon, Korea">Yeonsu-gu, Incheon, Korea</span></li></ul></div>
     <form class="contact-form" id="contactForm" novalidate>
       <div class="row"><label for="cf-name" data-en="Name">Name</label><input id="cf-name" name="name" type="text" required autocomplete="name"></div>
       <div class="row"><label for="cf-company" data-en="Company">Company</label><input id="cf-company" name="company" type="text" autocomplete="organization"></div>
@@ -237,7 +241,7 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-grid footer-grid-compact">
     <div><a class="brand" href="#top"><img src="/assets/logo.png" alt="ITING Communications logo" data-en-alt="ITING Communications logo" width="36" height="36"><span class="brand-name">ITING Communications</span></a><p class="ft-tagline" data-en="GEO Inside, digital advertising, content, and events connected by one team.">GEO Inside, digital advertising, content, and events connected by one team.</p><p class="ft-meta"><span data-en="ITING Communications Inc.">ITING Communications Inc.</span><br><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></p></div>
-    <div><h3 data-en="Explore">Explore</h3><ul class="ft-links"><li><a href="#services" data-en="Services">Services</a></li><li><a href="#geo">GEO Inside</a></li><li><a href="#packages" data-en="Packages">Packages</a></li><li><a href="/blog/" data-en="Insights">Insights</a></li><li><a href="#contact" data-en="Contact">Contact</a></li></ul></div>
+    <div><h3 data-en="Explore">Explore</h3><ul class="ft-links"><li><a href="#services" data-en="Services">Services</a></li><li><a href="#geo">GEO Inside</a></li><li><a href="#packages" data-en="Packages">Packages</a></li><li><a href="/en/blog/" data-en="Insights">Insights</a></li><li><a href="#contact" data-en="Contact">Contact</a></li></ul></div>
     <div><h3 data-en="Policies">Policies</h3><ul class="ft-links"><li><a href="/en/privacy.html" data-en="Privacy Policy">Privacy Policy</a></li><li><a href="/en/terms.html" data-en="Terms of Use">Terms of Use</a></li><li><a href="/sitemap.xml">Sitemap</a></li><li><a href="/llms.txt">llms.txt</a></li></ul></div>
   </div>
   <div class="footer-bottom container"><p>© 2026 ITING Communications Inc.</p></div>

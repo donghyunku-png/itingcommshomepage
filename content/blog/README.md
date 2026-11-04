@@ -1,6 +1,6 @@
 # Blog authoring
 
-`_template.md`를 복사해 한 글당 하나의 Markdown 파일을 만듭니다. 허용 카테고리는 `회사 소식`, `GEO`, `AX`, `AI 동향`입니다.
+`_template.md`를 복사해 한국어 글을 만들고, 같은 slug의 영문 번역을 `en/` 폴더에 만듭니다. 한국어 허용 카테고리는 `회사 소식`, `GEO`, `AX`, `AI 동향`이며 영문은 각각 `Company News`, `GEO`, `AX`, `AI Trends`입니다.
 
 ## 게시 순서
 
@@ -9,7 +9,8 @@
 3. 출처는 `sources:` 아래에 `- 출처명 | https://...` 형식으로 추가합니다.
 4. 검토 전에는 반드시 `draft: true`로 둡니다.
 5. 승인된 글만 `draft: false`로 바꾸고 `npm run build`를 실행합니다.
-6. `npm run check`로 메타데이터, 내부 링크, sitemap, 금지된 과장 문구를 점검합니다.
+6. 영문 번역은 수치·조건·한계·출처 링크를 원문과 동일하게 유지합니다.
+7. `npm run check`로 메타데이터, 내부 링크, sitemap, 금지된 과장 문구를 점검합니다.
 
 `draft: true`인 글은 생성 페이지·블로그 목록·sitemap·RSS에서 제외됩니다. 그러나 이 저장소나 브랜치가 공개 상태라면, 초안 Markdown을 커밋하고 푸시하는 순간 원문 자체는 외부에서 읽을 수 있습니다. 승인 전 실제 초안은 Git에서 제외된 `content/blog/drafts/` 또는 별도 비공개 작업 공간에 보관하세요. 게시 승인이 끝난 뒤에만 상위 `content/blog/`로 옮깁니다.
 
