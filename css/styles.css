@@ -501,6 +501,10 @@ html[lang="en"] #contact-h2{max-width:19ch;letter-spacing:-.035em;line-height:1.
 .cf-status{margin:10px 0 0;font-size:14px;min-height:20px}
 .cf-status.ok{color:#0a8a3a}
 .cf-status.err{color:#c0123e}
+.contact-form button:disabled{cursor:wait;opacity:.62}
+.cf-honey{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+.cf-check a,.cf-fallback a{text-decoration:underline;text-underline-offset:2px}
+.cf-fallback{margin:10px 0 0;color:var(--muted);font-size:12.5px;line-height:1.55}
 @media (max-width:900px){.contact-grid{grid-template-columns:1fr;gap:24px}.contact-info li{grid-template-columns:100px 1fr}}
 
 /* ----- FOOTER ----- */

@@ -224,15 +224,17 @@
 
 <section class="section contact" id="contact" aria-labelledby="contact-h2">
   <div class="container contact-grid">
-    <div><p class="kicker" data-en="Contact">Contact</p><h2 id="contact-h2" data-en="What should people—and AI—understand about your brand?">What should people—and AI—understand about your brand?</h2><p data-en="This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.">This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.</p><ul class="contact-info"><li><strong data-en="Email">Email</strong><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></li><li><strong data-en="Location">Location</strong><span data-en="Yeonsu-gu, Incheon, Korea">Yeonsu-gu, Incheon, Korea</span></li></ul></div>
-    <form class="contact-form" id="contactForm" novalidate>
-      <div class="row"><label for="cf-name" data-en="Name">Name</label><input id="cf-name" name="name" type="text" required autocomplete="name"></div>
-      <div class="row"><label for="cf-company" data-en="Company">Company</label><input id="cf-company" name="company" type="text" autocomplete="organization"></div>
-      <div class="row"><label for="cf-email" data-en="Email">Email</label><input id="cf-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="row"><label for="cf-topic" data-en="Topic">Topic</label><select id="cf-topic" name="topic" required><option value="" data-en="Select">Select</option><option value="ads" data-en="Digital advertising">Digital advertising</option><option value="geo" data-en="GEO Inside">GEO Inside</option><option value="china-geo" data-en="China GEO">China GEO</option><option value="legal-geo" data-en="Legal GEO">Legal GEO</option><option value="content" data-en="Content, social, or events">Content, social, or events</option></select></div>
-      <div class="row"><label for="cf-msg" data-en="Message">Message</label><textarea id="cf-msg" name="message" rows="5" required></textarea></div>
-      <label class="cf-check"><input type="checkbox" name="consent" required><span data-en="I agree to use the information above to prepare and reply to my email inquiry.">I agree to use the information above to prepare and reply to my email inquiry.</span></label>
-      <button type="submit" class="btn primary block" data-en="Open email application">Open email application</button><p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+    <div><p class="kicker" data-en="Contact">Contact</p><h2 id="contact-h2" data-en="What should people—and AI—understand about your brand?">What should people—and AI—understand about your brand?</h2><p data-en="Submit the form to send your inquiry request to ITING Communications through Formspree. Formspree acceptance does not guarantee inbox delivery. For urgent inquiries, email us directly.">Submit the form to send your inquiry request to ITING Communications through Formspree. Formspree acceptance does not guarantee inbox delivery. For urgent inquiries, email us directly.</p><ul class="contact-info"><li><strong data-en="Email">Email</strong><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></li><li><strong data-en="Location">Location</strong><span data-en="Yeonsu-gu, Incheon, Korea">Yeonsu-gu, Incheon, Korea</span></li></ul></div>
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzeeyvwo" method="POST" data-formspree-endpoint="https://formspree.io/f/xzeeyvwo">
+      <div class="row"><label for="cf-name" data-en="Name">Name</label><input id="cf-name" name="name" type="text" required maxlength="100" autocomplete="name"></div>
+      <div class="row"><label for="cf-company" data-en="Company">Company</label><input id="cf-company" name="company" type="text" maxlength="120" autocomplete="organization"></div>
+      <div class="row"><label for="cf-email" data-en="Email">Email</label><input id="cf-email" name="email" type="email" required maxlength="254" autocomplete="email"></div>
+      <div class="row"><label for="cf-topic" data-en="Topic">Topic</label><select id="cf-topic" name="topic" required><option value="" data-en="Select">Select</option><option value="Digital advertising" data-en="Digital advertising">Digital advertising</option><option value="GEO Inside" data-en="GEO Inside">GEO Inside</option><option value="China GEO" data-en="China GEO">China GEO</option><option value="Legal GEO" data-en="Legal GEO">Legal GEO</option><option value="Content, social, or events" data-en="Content, social, or events">Content, social, or events</option></select></div>
+      <div class="row"><label for="cf-msg" data-en="Message">Message</label><textarea id="cf-msg" name="message" rows="5" required maxlength="5000"></textarea></div>
+      <div class="cf-honey" aria-hidden="true"><label for="cf-website">Website</label><input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+      <label class="cf-check"><input type="checkbox" name="consent" required><span data-en="I agree that the information above and related technical data will be transmitted to Formspree and used to respond to my inquiry. See the">I agree that the information above and related technical data will be transmitted to Formspree and used to respond to my inquiry. See the</span> <a href="/en/privacy.html" data-en="Privacy Policy">Privacy Policy</a><span data-en=".">.</span></label>
+      <button type="submit" class="btn primary block" data-en="Send inquiry">Send inquiry</button><p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+      <p class="cf-fallback"><span data-en="Do not include sensitive personal data. If delivery fails or your inquiry is urgent, email">Do not include sensitive personal data. If delivery fails or your inquiry is urgent, email</span> <a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a><span data-en=" directly."> directly.</span></p>
     </form>
   </div>
 </section>
@@ -246,6 +248,6 @@
   </div>
   <div class="footer-bottom container"><p>© 2026 ITING Communications Inc.</p></div>
 </footer>
-<script src="/js/main.js" defer></script>
+<script type="module" src="/js/main.js?v=20261104-formspree"></script>
 </body>
 </html>

@@ -224,15 +224,17 @@
 
 <section class="section contact" id="contact" aria-labelledby="contact-h2">
   <div class="container contact-grid">
-    <div><p class="kicker" data-en="Contact">문의</p><h2 id="contact-h2" data-en="What should people—and AI—understand about your brand?">사람과 AI가 브랜드의 무엇을 이해해야 하는지 알려주세요.</h2><p data-en="This form opens your email application with a prepared message. The website does not confirm delivery; please send it from your email application.">폼은 작성 내용을 담아 이메일 앱을 엽니다. 웹사이트가 전송 완료를 확인하지 않으므로 이메일 앱에서 직접 발송해 주세요.</p><ul class="contact-info"><li><strong data-en="Email">이메일</strong><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></li><li><strong data-en="Location">소재지</strong><span data-en="Yeonsu-gu, Incheon, Korea">인천광역시 연수구</span></li></ul></div>
-    <form class="contact-form" id="contactForm" novalidate>
-      <div class="row"><label for="cf-name" data-en="Name">이름</label><input id="cf-name" name="name" type="text" required autocomplete="name"></div>
-      <div class="row"><label for="cf-company" data-en="Company">회사명</label><input id="cf-company" name="company" type="text" autocomplete="organization"></div>
-      <div class="row"><label for="cf-email" data-en="Email">이메일</label><input id="cf-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="row"><label for="cf-topic" data-en="Topic">문의 분야</label><select id="cf-topic" name="topic" required><option value="" data-en="Select">선택해 주세요</option><option value="ads" data-en="Digital advertising">디지털 광고</option><option value="geo" data-en="GEO Inside">GEO Inside</option><option value="china-geo" data-en="China GEO">중국 GEO</option><option value="legal-geo" data-en="Legal GEO">법무 GEO</option><option value="content" data-en="Content, social, or events">콘텐츠·소셜·행사</option></select></div>
-      <div class="row"><label for="cf-msg" data-en="Message">문의 내용</label><textarea id="cf-msg" name="message" rows="5" required></textarea></div>
-      <label class="cf-check"><input type="checkbox" name="consent" required><span data-en="I agree to use the information above to prepare and reply to my email inquiry.">위 정보를 이메일 문의 작성과 회신에 사용하는 데 동의합니다.</span></label>
-      <button type="submit" class="btn primary block" data-en="Open email application">이메일 앱 열기</button><p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+    <div><p class="kicker" data-en="Contact">문의</p><h2 id="contact-h2" data-en="What should people—and AI—understand about your brand?">사람과 AI가 브랜드의 무엇을 이해해야 하는지 알려주세요.</h2><p data-en="Submit the form to send your inquiry request to ITING Communications through Formspree. Formspree acceptance does not guarantee inbox delivery. For urgent inquiries, email us directly.">폼을 제출하면 Formspree를 통해 아이팅커뮤니케이션즈로 문의 요청이 전달됩니다. Formspree 접수는 메일함 도착을 보장하지 않습니다. 긴급한 문의는 이메일을 이용해 주세요.</p><ul class="contact-info"><li><strong data-en="Email">이메일</strong><a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a></li><li><strong data-en="Location">소재지</strong><span data-en="Yeonsu-gu, Incheon, Korea">인천광역시 연수구</span></li></ul></div>
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzeeyvwo" method="POST" data-formspree-endpoint="https://formspree.io/f/xzeeyvwo">
+      <div class="row"><label for="cf-name" data-en="Name">이름</label><input id="cf-name" name="name" type="text" required maxlength="100" autocomplete="name"></div>
+      <div class="row"><label for="cf-company" data-en="Company">회사명</label><input id="cf-company" name="company" type="text" maxlength="120" autocomplete="organization"></div>
+      <div class="row"><label for="cf-email" data-en="Email">이메일</label><input id="cf-email" name="email" type="email" required maxlength="254" autocomplete="email"></div>
+      <div class="row"><label for="cf-topic" data-en="Topic">문의 분야</label><select id="cf-topic" name="topic" required><option value="" data-en="Select">선택해 주세요</option><option value="Digital advertising" data-en="Digital advertising">디지털 광고</option><option value="GEO Inside" data-en="GEO Inside">GEO Inside</option><option value="China GEO" data-en="China GEO">중국 GEO</option><option value="Legal GEO" data-en="Legal GEO">법무 GEO</option><option value="Content, social, or events" data-en="Content, social, or events">콘텐츠·소셜·행사</option></select></div>
+      <div class="row"><label for="cf-msg" data-en="Message">문의 내용</label><textarea id="cf-msg" name="message" rows="5" required maxlength="5000"></textarea></div>
+      <div class="cf-honey" aria-hidden="true"><label for="cf-website">Website</label><input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+      <label class="cf-check"><input type="checkbox" name="consent" required><span data-en="I agree that the information above and related technical data will be transmitted to Formspree and used to respond to my inquiry. See the">위 정보와 관련 기술정보가 Formspree를 통해 전송되고 문의 회신에 이용되는 데 동의합니다. 자세한 내용은</span> <a href="/privacy.html" data-en="Privacy Policy">개인정보처리방침</a><span data-en=".">을 확인해 주세요.</span></label>
+      <button type="submit" class="btn primary block" data-en="Send inquiry">문의 보내기</button><p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
+      <p class="cf-fallback"><span data-en="Do not include sensitive personal data. If delivery fails or your inquiry is urgent, email">민감한 개인정보는 입력하지 마세요. 전송에 실패하거나 긴급한 문의는</span> <a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a><span data-en=" directly.">으로 직접 보내주세요.</span></p>
     </form>
   </div>
 </section>
@@ -246,6 +248,6 @@
   </div>
   <div class="footer-bottom container"><p>© 2026 ITING Communications Inc.</p></div>
 </footer>
-<script src="/js/main.js" defer></script>
+<script type="module" src="/js/main.js?v=20261104-formspree"></script>
 </body>
 </html>

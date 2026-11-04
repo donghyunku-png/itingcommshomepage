@@ -37,6 +37,7 @@ const files = await walk(root);
 const publicFiles = files.filter((file) => /\.(?:html|xml|txt)$/.test(file) && !file.includes(`${path.sep}content${path.sep}`));
 const forbidden = [
   [/AENOMIZE|aeonomize/i, 'retired product name'],
+  [/FormSubmit|formsubmit\.co/i, 'retired form provider'],
   [/\b(?:490,000|1,490,000)\b/, 'obsolete public price'],
   [/\+(?:115(?:\.1)?|41|28)%|3\.2\s*[×x배]|검색의\s*40%/i, 'unsupported performance statistic'],
   [/100건\s*이상|ARR\s*\d+/i, 'unsupported company performance claim'],
@@ -59,6 +60,25 @@ for (const file of publicFiles) {
       if (target.endsWith('/')) candidate = path.join(candidate, 'index.html');
       try { await access(candidate); } catch { errors.push(`${path.relative(root, file)}: missing internal target ${target}`); }
     }
+    for (const match of source.matchAll(/data-formspree-endpoint="([^"]*)"/g)) {
+      const endpoint = match[1];
+      if (endpoint && !/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint)) {
+        errors.push(`${path.relative(root, file)}: invalid Formspree endpoint`);
+      }
+    }
+  }
+}
+
+for (const homepage of ['index.html', path.join('en', 'index.html')]) {
+  const source = await readFile(path.join(root, homepage), 'utf8');
+  if (!source.includes('name="_gotcha"')) errors.push(`${homepage}: missing Formspree honeypot`);
+  if (!source.includes('mailto:sales@itingcomms.com')) errors.push(`${homepage}: missing direct email fallback`);
+  if (!source.includes('data-formspree-endpoint=')) errors.push(`${homepage}: missing Formspree endpoint configuration`);
+  if (!/action="https:\/\/formspree\.io\/f\/[a-z0-9]+"\s+method="POST"/i.test(source)) {
+    errors.push(`${homepage}: missing no-JavaScript Formspree fallback`);
+  }
+  if (/\snovalidate(?:\s|>)/i.test(source)) {
+    errors.push(`${homepage}: no-JavaScript fallback must retain native required-field validation`);
   }
 }
 

@@ -1,3 +1,10 @@
+import {
+  CONTACT_COPY,
+  createSubmissionGuard,
+  sendToFormspree,
+  validateInquiry,
+} from './contact-form.mjs';
+
 (() => {
   'use strict';
 
@@ -46,46 +53,87 @@
 
   const form = document.getElementById('contactForm');
   if (!form) return;
+  form.noValidate = true;
   const status = document.getElementById('cf-status');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const endpoint = form.dataset.formspreeEndpoint || '';
+  const english = document.documentElement.lang === 'en';
+  const copy = CONTACT_COPY[english ? 'en' : 'ko'];
+  const guard = createSubmissionGuard();
 
-  form.addEventListener('submit', (event) => {
+  const showStatus = (kind, message) => {
+    status.className = `cf-status${kind ? ` ${kind}` : ''}`;
+    status.textContent = message;
+  };
+
+  const setButton = (disabled, label) => {
+    submitButton.disabled = disabled;
+    submitButton.setAttribute('aria-disabled', String(disabled));
+    if (label) submitButton.textContent = label;
+  };
+
+  const clearInvalid = () => form.querySelectorAll('[aria-invalid="true"]')
+    .forEach((field) => field.removeAttribute('aria-invalid'));
+
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    status.className = 'cf-status';
-    status.textContent = '';
+    if (!guard.begin()) return;
+    clearInvalid();
+    showStatus('', '');
 
     const data = new FormData(form);
-    const required = ['name', 'email', 'topic', 'message', 'consent'];
-    if (required.some((field) => !data.get(field))) {
-      status.className = 'cf-status err';
-      status.textContent = document.documentElement.lang === 'en'
-        ? 'Complete all required fields and accept the consent.'
-        : '필수 항목을 모두 입력하고 동의에 체크해 주세요.';
+    const values = Object.fromEntries(data.entries());
+    const validation = validateInquiry(values);
+    if (!validation.ok) {
+      guard.finish('rejected');
+      const field = form.elements.namedItem(validation.field);
+      field?.setAttribute('aria-invalid', 'true');
+      field?.focus();
+      showStatus('err', copy[validation.code]);
       return;
     }
 
-    const email = String(data.get('email') || '');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      status.className = 'cf-status err';
-      status.textContent = document.documentElement.lang === 'en'
-        ? 'Enter a valid email address.'
-        : '올바른 이메일 주소를 입력해 주세요.';
+    const gotcha = String(data.get('_gotcha') || '');
+    if (gotcha) {
+      guard.finish('accepted');
+      form.reset();
+      setButton(true, copy.acceptedButton);
+      showStatus('ok', copy.accepted);
       return;
     }
 
-    const subject = encodeURIComponent(`[Inquiry] ${data.get('company') || data.get('name') || ''}`);
-    const body = encodeURIComponent([
-      `Name: ${data.get('name')}`,
-      `Company: ${data.get('company') || ''}`,
-      `Email: ${data.get('email')}`,
-      `Topic: ${data.get('topic')}`,
-      '',
-      String(data.get('message') || ''),
-    ].join('\n'));
+    data.set('consent', 'agreed');
+    data.set('_subject', `ITING website inquiry — ${String(data.get('company') || data.get('name') || '')
+      .replace(/[\r\n]+/g, ' ').trim().slice(0, 80)}`);
+    showStatus('', copy.sending);
+    setButton(true);
 
-    status.className = 'cf-status';
-    status.textContent = document.documentElement.lang === 'en'
-      ? 'Your email application is opening. Send the message there to complete the inquiry.'
-      : '이메일 앱을 여는 중입니다. 앱에서 메일을 발송해야 문의가 완료됩니다.';
-    window.location.href = `mailto:sales@itingcomms.com?subject=${subject}&body=${body}`;
+    const result = await sendToFormspree({ endpoint, data });
+    guard.finish(result.outcome);
+
+    if (result.outcome === 'accepted') {
+      form.reset();
+      setButton(true, copy.acceptedButton);
+      showStatus('ok', copy.accepted);
+      return;
+    }
+    if (result.outcome === 'not-configured') {
+      setButton(false);
+      showStatus('err', copy.notConfigured);
+      return;
+    }
+    if (result.outcome === 'rate-limited') {
+      setButton(false);
+      showStatus('err', copy.rateLimited);
+      return;
+    }
+    if (result.outcome === 'rejected') {
+      setButton(false);
+      showStatus('err', copy.rejected);
+      return;
+    }
+
+    setButton(true, copy.lockedButton);
+    showStatus('err', copy.uncertain);
   });
 })();
