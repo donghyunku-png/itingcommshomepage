@@ -1,5 +1,6 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { renderInline } from './markdown-inline.mjs';
 
 const root = process.cwd();
 const siteUrl = 'https://www.itingcomms.com';
@@ -25,10 +26,7 @@ const escapeHtml = (value = '') => String(value)
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 
-const inline = (value) => escapeHtml(value)
-  .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-  .replace(/`([^`]+)`/g, '<code>$1</code>');
+const inline = renderInline;
 
 function parseFrontMatter(source, filename) {
   const lines = source.replaceAll('\r\n', '\n').split('\n');
