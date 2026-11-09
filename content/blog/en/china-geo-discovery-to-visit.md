@@ -74,4 +74,6 @@ ITING does not guarantee AI recommendations, rankings, mention rates, visits or 
 
 Share your business category, locations, existing Chinese-language content and the customer questions you want to address. We can review execution conditions and an appropriate service combination. Target platforms, deliverables, timing and pricing are confirmed through consultation. [Enquire about China GEO and visitor marketing](/en/#contact)
 
+Policies and service availability across Chinese platforms can change. The products and services available may therefore differ depending on when a proposal is made. The actual scope will be confirmed against the conditions in place at the time of the proposal.
+
 Sources checked on November 9, 2026. This article was prepared by comparing the public service description with company package materials. Examples and review steps are practical suggestions, not evidence of official platform partnerships, universal feature availability or achieved customer results.
