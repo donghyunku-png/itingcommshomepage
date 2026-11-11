@@ -20,7 +20,7 @@ We start by understanding the brand and its customers. Our work brings together 
 
 ## GEO services powered by our own platform
 
-GEO focuses on how generative AI search understands and presents brand information. Using [our own GEO platform](https://geoinside.ai), we provide client-specific consulting and content management. Our approach covers content that AI can interpret, technical optimization and the accuracy of brand information.
+GEO focuses on how generative AI search understands and presents brand information. Using [our own GEO platform](https://geoinside.ai/landing), we provide client-specific consulting and content management. Our approach covers content that AI can interpret, technical optimization and the accuracy of brand information.
 
 ## Exhibitions and events that bring brands to life
 

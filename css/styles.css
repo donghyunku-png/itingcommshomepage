@@ -496,8 +496,15 @@ html[lang="en"] #contact-h2{max-width:19ch;letter-spacing:-.035em;line-height:1.
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{
   outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(58,123,255,.12);
 }
-.cf-check{display:flex;gap:10px;align-items:flex-start;margin:6px 0 14px;font-size:13.5px;color:#3a4665;line-height:1.55}
-.cf-check input{margin-top:3px}
+.cf-consent{margin:6px 0 18px;padding:20px;border:1px solid #dce4f1;border-radius:12px;background:#f7f9fc}
+.contact-form .cf-check{display:flex;gap:12px;align-items:flex-start;margin:0;font-size:15px;color:#24324b;line-height:1.6;cursor:pointer}
+.cf-check input[type="checkbox"]{flex:0 0 20px;width:20px;height:20px;margin:3px 0 0;padding:0;border-radius:4px;accent-color:var(--accent);cursor:pointer}
+.cf-check>span{min-width:0}
+.cf-required{color:var(--accent)}
+.cf-consent-details,.cf-consent-provider{margin:12px 0 0 32px;color:var(--muted);font-size:13px;font-weight:400;line-height:1.8;overflow-wrap:anywhere}
+.cf-consent-provider{font-size:12px}
+.cf-consent-details a{color:#245bd1;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:480px){.cf-consent{padding:16px}.cf-consent-details,.cf-consent-provider{margin-left:0}.contact-form .cf-check{font-size:14px}}
 .cf-status{margin:10px 0 0;font-size:14px;min-height:20px}
 .cf-status.ok{color:#0a8a3a}
 .cf-status.err{color:#c0123e}
@@ -653,3 +660,5 @@ html[data-lang="en"] [data-en]:not([data-keep]){/* swap handled by JS */}
 .service-page .section.container{padding-left:24px;padding-right:24px}
 .blog-row>.article-thumbnail{width:100%;min-width:0}
 @media(min-width:521px) and (max-width:720px){.blog-row>.article-thumbnail{order:initial}}
+
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}

@@ -131,7 +131,7 @@
       "@type": "Service",
       "@id": "https://www.itingcomms.com/#geo-inside",
       "name": "GEO Inside",
-      "url": "https://geoinside.ai/",
+      "url": "https://geoinside.ai/landing",
       "serviceType": "Generative Engine Optimization diagnosis and consulting",
       "provider": {
         "@id": "https://www.itingcomms.com/#organization"
@@ -177,7 +177,7 @@
     <p class="eyebrow">GEO INSIDE · PERFORMANCE MARKETING · EVENTS</p>
     <h1 id="hero-h1" data-en="GEO marketing. Performance advertising. Events that connect.">GEO 마케팅, 퍼포먼스 광고,<br>브랜드를 경험하는 행사까지.</h1>
     <p class="hero-sub" data-en="ITING Communications is a Korean marketing company connecting AI search diagnosis through GEO Inside, digital advertising, and event planning and operations. We align customer questions, content, media, and on-site experiences with your goals.">아이팅커뮤니케이션즈는 자체 플랫폼 GEO Inside를 통한 AI 검색 진단, 디지털 광고와 행사 기획·운영을 연결하는 마케팅 회사입니다. 고객의 질문과 콘텐츠, 매체와 현장 경험을 목표에 맞춰 함께 설계합니다.</p>
-    <div class="hero-cta"><a class="btn primary" href="#contact" data-en="Request a consultation">상담 문의</a><a class="btn ghost" href="/services/" data-en="Explore our services">서비스 살펴보기</a><a class="btn ghost" href="https://geoinside.ai" target="_blank" rel="noopener noreferrer" data-en="Open GEO Inside ↗">GEO Inside 접속 ↗</a></div>
+    <div class="hero-cta"><a class="btn primary" href="#contact" data-en="Request a consultation">상담 문의</a><a class="btn ghost" href="/services/" data-en="Explore our services">서비스 살펴보기</a><a class="btn ghost" href="https://geoinside.ai/landing" target="_blank" rel="noopener noreferrer" data-en="Explore GEO Inside ↗">GEO Inside 소개 보기 ↗</a></div>
     <ul class="hero-stats" role="list">
       <li><strong>Question</strong><span data-en="customer-context question design">고객 맥락 질문 설계</span></li>
       <li><strong>Measure</strong><span data-en="repeatable answer measurement">반복 가능한 답변 측정</span></li>
@@ -212,7 +212,7 @@
     </div>
     <p class="evidence-note" data-en="AI answers vary by question, time, region, account, and environment. GEO Inside does not guarantee a specific rank, mention rate, inquiry volume, or revenue.">AI 답변은 질문·시점·지역·계정·환경에 따라 달라집니다. 특정 순위·언급률·문의·매출을 보장하지 않습니다.</p>
     <p class="geo-discovery-goal" data-en="The content and site-improvement goal is to make official brand information easier to find accurately across discovery environments including ChatGPT, Gemini, Perplexity, Claude, and Naver. GEO Inside currently measures ChatGPT, Gemini, and Perplexity repeatedly; Claude is not included in its native measurement set.">콘텐츠·사이트 개선의 목표는 ChatGPT·Gemini·Perplexity·Claude·네이버 등 다양한 탐색 환경에서 브랜드의 공식 정보를 더 정확히 찾을 수 있게 하는 것입니다. 현재 GEO Inside의 반복 측정 대상은 ChatGPT·Gemini·Perplexity이며, Claude는 기본 측정 대상에 포함되지 않습니다.</p>
-    <div class="geo-platform-cta"><a class="btn primary" href="https://geoinside.ai" target="_blank" rel="noopener noreferrer" data-en="Visit GEO Inside ↗">GEO Inside 방문하기 ↗</a><span data-en="Access may require signing in.">접속 시 로그인이 필요할 수 있습니다.</span></div>
+    <div class="geo-platform-cta"><a class="btn primary" href="https://geoinside.ai/landing" target="_blank" rel="noopener noreferrer" data-en="Explore GEO Inside ↗">GEO Inside 소개 보기 ↗</a><span data-en="Explore the service without signing in.">로그인 없이 서비스 소개를 확인하실 수 있습니다.</span></div>
   </div>
 </section>
 
@@ -296,7 +296,11 @@
       <div class="row"><label for="cf-topic" data-en="Topic">문의 분야</label><select id="cf-topic" name="topic" required><option value="" data-en="Select">선택해 주세요</option><option value="Digital advertising" data-en="Performance marketing">퍼포먼스 마케팅·디지털 광고</option><option value="GEO Inside" data-en="GEO Inside">GEO Inside</option><option value="China GEO" data-en="China GEO">중국 GEO</option><option value="Legal GEO" data-en="Legal GEO">법무 GEO</option><option value="Event planning and operations" data-en="Event planning and operations">행사 기획·운영</option><option value="Content, social, or events" data-en="Content, social, or events">콘텐츠·소셜·행사</option></select></div>
       <div class="row"><label for="cf-msg" data-en="Message">문의 내용</label><textarea id="cf-msg" name="message" rows="5" required maxlength="5000"></textarea></div>
       <div class="cf-honey" aria-hidden="true"><label for="cf-website">Website</label><input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
-      <label class="cf-check"><input type="checkbox" name="consent" required><span data-en="I agree that the information above and related technical data will be transmitted to Formspree and used to respond to my inquiry. See the">해당정보가 이용되는 데 동의합니다. 자세한 내용은</span> <a href="/privacy.html" data-en="Privacy Policy">개인정보처리방침</a><span data-en=".">을 확인해 주세요.</span></label>
+      <div class="cf-consent">
+        <label class="cf-check" for="cf-consent"><input id="cf-consent" type="checkbox" name="consent" required aria-describedby="cf-consent-details cf-consent-provider"><span><span data-en="I agree to the collection and use of my personal information.">개인정보 수집·이용에 동의합니다.</span> <span class="cf-required" aria-hidden="true">*</span><span class="sr-only" data-en=" (required)"> (필수)</span></span></label>
+        <p id="cf-consent-details" class="cf-consent-details"><span data-en="Information collected: name, email, inquiry topic, message, and consent status (optional: company). Purpose: inquiry responses and consultation guidance. Retention: 1 year after consultation ends. You may refuse consent, but this will limit our ability to provide consultation.">수집 항목: 이름·이메일·문의 분야·문의 내용·동의 여부 (선택: 회사명) · 이용 목적: 문의 회신 및 진단 상담 안내 · 보유 기간: 상담 종료 후 1년. 동의를 거부하실 수 있으나, 거부 시 상담 제공이 제한됩니다.</span> <a href="/privacy.html" data-en="View Privacy Policy">개인정보처리방침 보기</a></p>
+        <p id="cf-consent-provider" class="cf-consent-provider" data-en="Inquiries are sent through Formspree, which may also process technical information for service operation and security. See the Privacy Policy for details, including Formspree retention.">문의는 Formspree를 통해 전송되며, 서비스 운영·보안에 필요한 기술정보가 함께 처리될 수 있습니다. Formspree의 보관 기간 등은 개인정보처리방침에서 확인해 주세요.</p>
+      </div>
       <button type="submit" class="btn primary block" data-en="Send inquiry">문의 보내기</button><p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
       <p class="cf-fallback"><span data-en="Do not include sensitive personal data. If delivery fails or your inquiry is urgent, email">민감한 개인정보는 입력하지 마세요. 전송에 실패하거나 긴급한 문의는</span> <a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a><span data-en=" directly.">으로 직접 보내주세요.</span></p>
     </form>

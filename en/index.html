@@ -131,7 +131,7 @@
       "@type": "Service",
       "@id": "https://www.itingcomms.com/#geo-inside",
       "name": "GEO Inside",
-      "url": "https://geoinside.ai/",
+      "url": "https://geoinside.ai/landing",
       "serviceType": "Generative Engine Optimization diagnosis and consulting",
       "provider": {
         "@id": "https://www.itingcomms.com/#organization"
@@ -177,7 +177,7 @@
     <p class="eyebrow">GEO INSIDE · PERFORMANCE MARKETING · EVENTS</p>
     <h1 id="hero-h1" data-en="GEO marketing. Performance advertising. Events that connect.">GEO marketing. Performance advertising. Events that connect.</h1>
     <p class="hero-sub" data-en="ITING Communications is a Korean marketing company connecting AI search diagnosis through GEO Inside, digital advertising, and event planning and operations. We align customer questions, content, media, and on-site experiences with your goals.">ITING Communications is a Korean marketing company connecting AI search diagnosis through GEO Inside, digital advertising, and event planning and operations. We align customer questions, content, media, and on-site experiences with your goals.</p>
-    <div class="hero-cta"><a class="btn primary" href="#contact" data-en="Request a consultation">Request a consultation</a><a class="btn ghost" href="/en/services/" data-en="Explore our services">Explore our services</a><a class="btn ghost" href="https://geoinside.ai" target="_blank" rel="noopener noreferrer" data-en="Open GEO Inside ↗">Open GEO Inside ↗</a></div>
+    <div class="hero-cta"><a class="btn primary" href="#contact" data-en="Request a consultation">Request a consultation</a><a class="btn ghost" href="/en/services/" data-en="Explore our services">Explore our services</a><a class="btn ghost" href="https://geoinside.ai/landing" target="_blank" rel="noopener noreferrer" data-en="Explore GEO Inside ↗">Explore GEO Inside ↗</a></div>
     <ul class="hero-stats" role="list">
       <li><strong>Question</strong><span data-en="customer-context question design">customer-context question design</span></li>
       <li><strong>Measure</strong><span data-en="repeatable answer measurement">repeatable answer measurement</span></li>
@@ -212,7 +212,7 @@
     </div>
     <p class="evidence-note" data-en="AI answers vary by question, time, region, account, and environment. GEO Inside does not guarantee a specific rank, mention rate, inquiry volume, or revenue.">AI answers vary by question, time, region, account, and environment. GEO Inside does not guarantee a specific rank, mention rate, inquiry volume, or revenue.</p>
     <p class="geo-discovery-goal" data-en="The content and site-improvement goal is to make official brand information easier to find accurately across discovery environments including ChatGPT, Gemini, Perplexity, Claude, and Naver. GEO Inside currently measures ChatGPT, Gemini, and Perplexity repeatedly; Claude is not included in its native measurement set.">The content and site-improvement goal is to make official brand information easier to find accurately across discovery environments including ChatGPT, Gemini, Perplexity, Claude, and Naver. GEO Inside currently measures ChatGPT, Gemini, and Perplexity repeatedly; Claude is not included in its native measurement set.</p>
-    <div class="geo-platform-cta"><a class="btn primary" href="https://geoinside.ai" target="_blank" rel="noopener noreferrer" data-en="Visit GEO Inside ↗">Visit GEO Inside ↗</a><span data-en="Access may require signing in.">Access may require signing in.</span></div>
+    <div class="geo-platform-cta"><a class="btn primary" href="https://geoinside.ai/landing" target="_blank" rel="noopener noreferrer" data-en="Explore GEO Inside ↗">Explore GEO Inside ↗</a><span data-en="Explore the service without signing in.">Explore the service without signing in.</span></div>
   </div>
 </section>
 
@@ -296,7 +296,11 @@
       <div class="row"><label for="cf-topic" data-en="Topic">Topic</label><select id="cf-topic" name="topic" required><option value="" data-en="Select">Select</option><option value="Digital advertising" data-en="Performance marketing">Performance marketing</option><option value="GEO Inside" data-en="GEO Inside">GEO Inside</option><option value="China GEO" data-en="China GEO">China GEO</option><option value="Legal GEO" data-en="Legal GEO">Legal GEO</option><option value="Event planning and operations" data-en="Event planning and operations">Event planning and operations</option><option value="Content, social, or events" data-en="Content, social, or events">Content, social, or events</option></select></div>
       <div class="row"><label for="cf-msg" data-en="Message">Message</label><textarea id="cf-msg" name="message" rows="5" required maxlength="5000"></textarea></div>
       <div class="cf-honey" aria-hidden="true"><label for="cf-website">Website</label><input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
-      <label class="cf-check"><input type="checkbox" name="consent" required><span data-en="I agree that the information above and related technical data will be transmitted to Formspree and used to respond to my inquiry. See the">I agree that the information above and related technical data will be transmitted to Formspree and used to respond to my inquiry. See the</span> <a href="/en/privacy.html" data-en="Privacy Policy">Privacy Policy</a><span data-en=".">.</span></label>
+      <div class="cf-consent">
+        <label class="cf-check" for="cf-consent"><input id="cf-consent" type="checkbox" name="consent" required aria-describedby="cf-consent-details cf-consent-provider"><span><span data-en="I agree to the collection and use of my personal information.">I agree to the collection and use of my personal information.</span> <span class="cf-required" aria-hidden="true">*</span><span class="sr-only" data-en=" (required)"> (required)</span></span></label>
+        <p id="cf-consent-details" class="cf-consent-details"><span data-en="Information collected: name, email, inquiry topic, message, and consent status (optional: company). Purpose: inquiry responses and consultation guidance. Retention: 1 year after consultation ends. You may refuse consent, but this will limit our ability to provide consultation.">Information collected: name, email, inquiry topic, message, and consent status (optional: company). Purpose: inquiry responses and consultation guidance. Retention: 1 year after consultation ends. You may refuse consent, but this will limit our ability to provide consultation.</span> <a href="/en/privacy.html" data-en="View Privacy Policy">View Privacy Policy</a></p>
+        <p id="cf-consent-provider" class="cf-consent-provider" data-en="Inquiries are sent through Formspree, which may also process technical information for service operation and security. See the Privacy Policy for details, including Formspree retention.">Inquiries are sent through Formspree, which may also process technical information for service operation and security. See the Privacy Policy for details, including Formspree retention.</p>
+      </div>
       <button type="submit" class="btn primary block" data-en="Send inquiry">Send inquiry</button><p class="cf-status" id="cf-status" role="status" aria-live="polite"></p>
       <p class="cf-fallback"><span data-en="Do not include sensitive personal data. If delivery fails or your inquiry is urgent, email">Do not include sensitive personal data. If delivery fails or your inquiry is urgent, email</span> <a href="mailto:sales@itingcomms.com">sales@itingcomms.com</a><span data-en=" directly."> directly.</span></p>
     </form>

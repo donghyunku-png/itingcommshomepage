@@ -72,7 +72,7 @@ Prepare your website address, main products or services, target customers and th
 
 As the developer of GEO Inside, ITING Communications helps companies understand how their brands currently appear in AI answers and improve their official information and content.
 
-GEO Inside official website: [geoinside.ai](https://geoinside.ai)
+GEO Inside official website: [geoinside.ai](https://geoinside.ai/landing)
 
 ITING Communications: [www.itingcomms.com](https://www.itingcomms.com)
 

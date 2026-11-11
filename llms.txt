@@ -19,7 +19,7 @@ Question candidates may draw on the customer's website, products, target keyword
 
 One example measurement configuration repeats one question seven times per engine per day across three global engines for 28 days: 196 observations per engine and 588 across the three engines. Actual repetition, cadence, review, and reporting scope are agreed for each engagement. Wilson 95% confidence intervals estimate a range for a measured proportion under defined assumptions; they do not mean 95% answer accuracy or guarantee real-world recommendation probability. Results are interpreted separately by platform, question, and period.
 
-- GEO Inside access: https://geoinside.ai/
+- GEO Inside introduction: https://geoinside.ai/landing
 
 ## Service modules
 - GEO Inside General: question design, repeated AI-answer measurement, brand/competitor/source diagnosis, prioritized improvements, and follow-up reporting.

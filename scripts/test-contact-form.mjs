@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import {
   classifyHttpStatus,
   createSubmissionGuard,
@@ -30,6 +31,26 @@ assert.deepEqual(validateInquiry({
 assert.deepEqual(validateInquiry({
   name: 'Test', email: 'not-an-email', topic: 'GEO Inside', message: 'Hello', consent: 'agreed',
 }), { ok: false, code: 'email', field: 'email' });
+
+for (const consent of ['', undefined, '   ']) {
+  assert.deepEqual(validateInquiry({
+    name: 'Test', email: 'test@example.com', topic: 'GEO Inside', message: 'Hello', consent,
+  }), { ok: false, code: 'missing', field: 'consent' }, 'unchecked consent must block submission');
+}
+
+for (const [file, policy] of [['index.html', '/privacy.html'], ['en/index.html', '/en/privacy.html']]) {
+  const html = await readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+  assert.match(html, /id="cf-consent"[^>]*name="consent"[^>]*required[^>]*aria-describedby="cf-consent-details cf-consent-provider"/);
+  assert.match(html, /for="cf-consent"/);
+  assert.match(html, /id="cf-consent-details"/);
+  assert.match(html, /id="cf-consent-provider"/);
+  assert.ok(html.includes(`href="${policy}" data-en="View Privacy Policy"`));
+  assert.match(html, /action="https:\/\/formspree\.io\/f\/xzeeyvwo" method="POST"/);
+  assert.match(html, /name="_gotcha"/);
+  assert.ok(!/href="https:\/\/geoinside\.ai\/?"/.test(html), 'product links must go to the public introduction');
+  assert.equal([...html.matchAll(/href="https:\/\/geoinside\.ai\/landing"/g)].length, 2);
+  assert.ok(!html.includes('Access may require signing in.'), 'outdated login notice must be removed');
+}
 
 assert.equal(classifyHttpStatus(200), 'accepted');
 assert.equal(classifyHttpStatus(204), 'accepted');

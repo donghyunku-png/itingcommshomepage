@@ -8,7 +8,7 @@ published: "2026-11-10"
 updated: "2026-11-10"
 draft: false
 sources:
-- GEO Inside 공식 사이트 | https://geoinside.ai
+- GEO Inside 공식 사이트 | https://geoinside.ai/landing
 - GEO Inside 솔루션·서비스·플랫폼 소개 | https://www.itingcomms.com/blog/geo-inside-introduction/
 ---
 

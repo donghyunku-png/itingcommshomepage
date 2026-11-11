@@ -38,6 +38,7 @@ const publicFiles = files.filter((file) => /\.(?:html|xml|txt)$/.test(file) && !
 const forbidden = [
   [/AENOMIZE|aeonomize/i, 'retired product name'],
   [/FormSubmit|formsubmit\.co/i, 'retired form provider'],
+  [/https:\/\/geoinside\.ai\/?(?=[\s"<)]|$)/i, 'GEO Inside link must point to the public introduction'],
   [/\b(?:490,000|1,490,000)\b/, 'obsolete public price'],
   [/\+(?:115(?:\.1)?|41|28)%|3\.2\s*[×x배]|검색의\s*40%/i, 'unsupported performance statistic'],
   [/100건\s*이상|ARR\s*\d+/i, 'unsupported company performance claim'],

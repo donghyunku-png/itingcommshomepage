@@ -74,7 +74,7 @@ AI가 자사 브랜드를 어떻게 소개하는지 확인하려는 기업, 공�
 
 GEO Inside 개발사인 아이팅커뮤니케이션즈는 GEO Inside를 통해 기업이 AI 답변 속 브랜드의 현재 모습을 이해하고, 공식 정보와 콘텐츠를 정비할 수 있도록 돕습니다.
 
-GEO Inside 공식 사이트: [geoinside.ai](https://geoinside.ai)
+GEO Inside 공식 사이트: [geoinside.ai](https://geoinside.ai/landing)
 
 아이팅커뮤니케이션즈: [www.itingcomms.com](https://www.itingcomms.com)
 

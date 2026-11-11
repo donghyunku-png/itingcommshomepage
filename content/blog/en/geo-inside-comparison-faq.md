@@ -8,7 +8,7 @@ published: "2026-11-10"
 updated: "2026-11-10"
 draft: false
 sources:
-- GEO Inside official website | https://geoinside.ai
+- GEO Inside official website | https://geoinside.ai/landing
 - Introducing GEO Inside: solution, service and platform | https://www.itingcomms.com/en/blog/geo-inside-introduction/
 ---
 
