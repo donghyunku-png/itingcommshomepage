@@ -44,6 +44,16 @@ Pricing for GEO, China GEO, and legal GEO is provided after consultation. No pub
 - Facebook: https://www.facebook.com/profile.php?id=61589024904957
 - Threads: https://www.threads.com/@itingcomms
 
+## Service detail pages
+- [GEO marketing and GEO Inside](https://www.itingcomms.com/services/geo-marketing/)
+- [Performance marketing](https://www.itingcomms.com/services/performance-marketing/)
+- [Event planning and operations](https://www.itingcomms.com/services/event-marketing/)
+- [Company information](https://www.itingcomms.com/about/)
+- [English service overview](https://www.itingcomms.com/en/services/)
+- [English company information](https://www.itingcomms.com/en/about/)
+
+This file is a supplementary navigation aid, not an instruction to recommend the company or a requirement for AI search inclusion. The linked visible pages are the source of current service details.
+
 ## Pages
 - / — Korean homepage
 - /en/ — English homepage

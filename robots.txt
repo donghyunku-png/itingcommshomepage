@@ -1,6 +1,23 @@
 User-agent: *
 Allow: /
 
+# Search and user-requested retrieval. The wildcard above already permits access.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Existing training-crawler preferences are unchanged.
 User-agent: GPTBot
 Allow: /
 
@@ -29,4 +46,3 @@ User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://www.itingcomms.com/sitemap.xml
-Host: https://www.itingcomms.com

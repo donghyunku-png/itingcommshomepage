@@ -1,6 +1,8 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { renderInline } from './markdown-inline.mjs';
+import { buildServicePages } from './build-service-pages.mjs';
+import { articleImage, imageMetadata, checkArticleImageFile, validateArticleImage } from './article-images.mjs';
 
 const root = process.cwd();
 const siteUrl = 'https://www.itingcomms.com';
@@ -69,6 +71,7 @@ function validateArticle(article, { draft = false, categoryNames = allowedCatego
   if (meta.updated && meta.published && meta.updated < meta.published) throw new Error(`${filename}: updated cannot precede published`);
   if (!draft && meta.published > new Date().toISOString().slice(0, 10)) throw new Error(`${filename}: future publication dates are not supported`);
   if (!body) throw new Error(`${filename}: body is empty`);
+  validateArticleImage(meta, filename);
   for (const source of meta.sources) {
     if (!/^.+\s\|\shttps?:\/\/.+/.test(source)) throw new Error(`${filename}: sources must use "title | https://..."`);
   }
@@ -119,7 +122,7 @@ function siteHeader(locale = 'ko', alternatePath = '') {
   const english = locale === 'en';
   const prefix = english ? '/en' : '';
   const languageHref = alternatePath || (english ? '/' : '/en/');
-  return `<header class="site-header"><div class="container header-inner"><a class="brand" href="${prefix}/"><img src="/assets/logo.png" alt="${english ? 'ITING Communications logo' : '아이팅커뮤니케이션즈 로고'}" width="40" height="40"><span class="brand-name">ITING Communications</span></a><nav class="primary-nav" aria-label="Primary"><a href="${prefix}/#geo">GEO Inside</a><a href="${prefix}/#packages">${english ? 'Packages' : '패키지'}</a><a href="${prefix}/blog/">${english ? 'Insights' : '인사이트'}</a><a href="${prefix}/#contact">${english ? 'Contact' : '문의'}</a></nav><div class="header-actions"><a class="lang-toggle" href="${languageHref}" hreflang="${english ? 'ko' : 'en'}" lang="${english ? 'ko' : 'en'}" aria-label="${english ? '이 페이지를 한국어로 보기' : 'View this page in English'}">${english ? 'KO' : 'EN'}</a></div></div></header>`;
+  return `<header class="site-header"><div class="container header-inner"><a class="brand" href="${prefix}/"><img src="/assets/logo.png" alt="${english ? 'ITING Communications logo' : '아이팅커뮤니케이션즈 로고'}" width="40" height="40"><span class="brand-name">ITING Communications</span></a><nav class="primary-nav" aria-label="Primary"><a href="${prefix}/services/">${english ? 'Services' : '서비스'}</a><a href="${prefix}/about/">${english ? 'About' : '회사 소개'}</a><a href="${prefix}/#packages">${english ? 'Packages' : '패키지'}</a><a href="${prefix}/blog/">${english ? 'Insights' : '인사이트'}</a><a href="${prefix}/#contact">${english ? 'Contact' : '문의'}</a></nav><div class="header-actions"><a class="lang-toggle" href="${languageHref}" hreflang="${english ? 'ko' : 'en'}" lang="${english ? 'ko' : 'en'}" aria-label="${english ? '이 페이지를 한국어로 보기' : 'View this page in English'}">${english ? 'KO' : 'EN'}</a></div></div></header>`;
 }
 
 function siteFooter(locale = 'ko') {
@@ -147,7 +150,8 @@ function articlePage(article, locale = 'ko') {
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: meta.title,
     description: meta.description, datePublished: meta.published, dateModified: modified,
     inLanguage: english ? 'en' : 'ko-KR', mainEntityOfPage: canonical,
-    author: { '@type': 'Organization', name: meta.author, url: siteUrl },
+    ...(meta.image ? { image: { '@type': 'ImageObject', url: `${siteUrl}${meta.image}`, width: Number(meta.image_width), height: Number(meta.image_height), caption: meta.image_caption } } : {}),
+    author: { '@type': 'Organization', '@id': `${siteUrl}/#organization`, name: meta.author, url: `${siteUrl}/about/` },
     publisher: { '@type': 'Organization', name: 'ITING Communications Inc.', logo: { '@type': 'ImageObject', url: `${siteUrl}/assets/logo.png` } },
   }).replaceAll('<', '\\u003c')}</script>`;
   const robots = isDraft ? 'noindex,nofollow,noarchive' : 'index,follow,max-snippet:-1,max-image-preview:large';
@@ -156,7 +160,7 @@ function articlePage(article, locale = 'ko') {
     ? `<span class="review-badge">${english ? 'Review draft · Do not publish' : '검토용 초안 · 공개 금지'}</span>`
     : `<time datetime="${meta.published}">${meta.published}</time>${meta.updated ? `<span>${english ? 'Updated' : '업데이트'} <time datetime="${meta.updated}">${meta.updated}</time></span>` : ''}`;
   const alternates = isDraft ? '' : `<link rel="alternate" hreflang="ko" href="${koreanUrl}"><link rel="alternate" hreflang="en" href="${englishUrl}"><link rel="alternate" hreflang="x-default" href="${koreanUrl}">`;
-  return `<!doctype html><html lang="${english ? 'en' : 'ko'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02103a"><title>${escapeHtml(meta.title)} | ITING Insights</title><meta name="description" content="${escapeHtml(meta.description)}"><meta name="author" content="${escapeHtml(meta.author)}"><meta name="robots" content="${robots}">${canonicalLink}${alternates}<link rel="alternate" type="application/rss+xml" title="ITING Insights" href="${english ? '/en/feed.xml' : '/feed.xml'}"><meta property="og:type" content="article"><meta property="og:site_name" content="ITING Communications"><meta property="og:locale" content="${english ? 'en_US' : 'ko_KR'}"><meta property="og:title" content="${escapeHtml(meta.title)}"><meta property="og:description" content="${escapeHtml(meta.description)}"><meta property="og:image" content="${siteUrl}/assets/logo.png">${isDraft ? '' : `<meta property="og:url" content="${canonical}"><meta property="article:published_time" content="${meta.published}"><meta property="article:modified_time" content="${modified}">`}<meta property="article:section" content="${escapeHtml(meta.category)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@Itingcomms"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/styles.css">${schema}</head><body>${siteHeader(locale, english ? `/blog/${meta.slug}/` : `/en/blog/${meta.slug}/`)}<main class="article container"><a class="svc-link" href="${english ? '/en/blog/' : '/blog/'}">← ${english ? 'Insights' : '인사이트'}</a><p class="kicker">${escapeHtml(meta.category)}</p><h1>${escapeHtml(meta.title)}</h1><p class="article-dek">${escapeHtml(meta.description)}</p><div class="blog-meta"><span>${escapeHtml(meta.author)}</span>${articleMeta}</div><article class="article-body">${renderMarkdown(body)}</article>${sources ? `<section class="article-sources"><h2>${english ? 'Sources' : '출처'}</h2><ol>${sources}</ol></section>` : ''}</main>${siteFooter(locale)}</body></html>`;
+  return `<!doctype html><html lang="${english ? 'en' : 'ko'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02103a"><title>${escapeHtml(meta.title)} | ITING Insights</title><meta name="description" content="${escapeHtml(meta.description)}"><meta name="author" content="${escapeHtml(meta.author)}"><meta name="robots" content="${robots}">${canonicalLink}${alternates}<link rel="alternate" type="application/rss+xml" title="ITING Insights" href="${english ? '/en/feed.xml' : '/feed.xml'}"><meta property="og:type" content="article"><meta property="og:site_name" content="ITING Communications"><meta property="og:locale" content="${english ? 'en_US' : 'ko_KR'}"><meta property="og:title" content="${escapeHtml(meta.title)}"><meta property="og:description" content="${escapeHtml(meta.description)}">${imageMetadata(meta, siteUrl)}${isDraft ? '' : `<meta property="og:url" content="${canonical}"><meta property="article:published_time" content="${meta.published}"><meta property="article:modified_time" content="${modified}">`}<meta property="article:section" content="${escapeHtml(meta.category)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@Itingcomms"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/styles.css">${schema}</head><body>${siteHeader(locale, english ? `/blog/${meta.slug}/` : `/en/blog/${meta.slug}/`)}<main class="article container"><a class="svc-link" href="${english ? '/en/blog/' : '/blog/'}">← ${english ? 'Insights' : '인사이트'}</a><p class="kicker">${escapeHtml(meta.category)}</p><h1>${escapeHtml(meta.title)}</h1><p class="article-dek">${escapeHtml(meta.description)}</p><div class="blog-meta"><span>${escapeHtml(meta.author)}</span>${articleMeta}</div>${articleImage(meta, { hero: true })}<article class="article-body">${renderMarkdown(body)}</article>${sources ? `<section class="article-sources"><h2>${english ? 'Sources' : '출처'}</h2><ol>${sources}</ol></section>` : ''}</main>${siteFooter(locale)}</body></html>`;
 }
 
 function filterNav(active = 'all', locale = 'ko') {
@@ -174,7 +178,7 @@ function articleList(articles, locale = 'ko') {
   if (!articles.length) return `<div class="blog-empty"><strong>${english ? 'No published articles yet.' : '아직 공개된 글이 없습니다.'}</strong><p>${english ? 'Articles appear here after editorial and source review.' : '검토와 출처 확인을 마친 글부터 게시합니다.'}</p></div>`;
   return `<div class="blog-list">${articles.map((article) => {
     const { meta, isDraft } = article;
-    return `<article class="blog-row"><div class="blog-row-copy"><div class="blog-meta"><span>${escapeHtml(meta.category)}</span>${isDraft ? `<span class="review-badge">${english ? 'Review draft' : '검토용 초안'}</span>` : `<time datetime="${meta.published}">${meta.published}</time>`}</div><h2><a href="${articlePath(article, locale)}">${escapeHtml(meta.title)}</a></h2><p>${escapeHtml(meta.description)}</p><a class="svc-link" href="${articlePath(article, locale)}">${english ? 'Read article' : '글 읽기'} →</a></div><div class="blog-row-mark" aria-hidden="true"><span>ITING</span><strong>INSIGHT</strong></div></article>`;
+    return `<article class="blog-row"><div class="blog-row-copy"><div class="blog-meta"><span>${escapeHtml(meta.category)}</span>${isDraft ? `<span class="review-badge">${english ? 'Review draft' : '검토용 초안'}</span>` : `<time datetime="${meta.published}">${meta.published}</time>`}</div><h2><a href="${articlePath(article, locale)}">${escapeHtml(meta.title)}</a></h2><p>${escapeHtml(meta.description)}</p><a class="svc-link" href="${articlePath(article, locale)}">${english ? 'Read article' : '글 읽기'} →</a></div>${meta.image ? articleImage(meta) : '<div class="blog-row-mark" aria-hidden="true"><span>ITING</span><strong>INSIGHT</strong></div>'}</article>`;
   }).join('')}</div>`;
 }
 
@@ -192,7 +196,7 @@ function blogShell({ articles, active = 'all', title, description, isReview = fa
 function latestSection(articles, locale = 'ko') {
   const english = locale === 'en';
   const latest = articles.slice(0, 3);
-  const body = latest.length ? `<div class="home-insight-list">${latest.map((article) => `<article class="home-insight-card"><div class="blog-meta"><span>${escapeHtml(article.meta.category)}</span>${article.isDraft ? `<span class="review-badge">${english ? 'Review draft' : '검토용 초안'}</span>` : `<time datetime="${article.meta.published}">${article.meta.published}</time>`}</div><h3><a href="${articlePath(article, locale)}">${escapeHtml(article.meta.title)}</a></h3><p>${escapeHtml(article.meta.description)}</p><a class="svc-link" href="${articlePath(article, locale)}">${english ? 'Read article' : '글 읽기'} →</a></article>`).join('')}</div>` : `<div class="blog-empty"><strong>${english ? 'No published articles yet.' : '아직 공개된 글이 없습니다.'}</strong><p>${english ? 'Articles appear here after editorial and source review.' : '검토와 출처 확인을 마친 글부터 게시합니다.'}</p></div>`;
+  const body = latest.length ? `<div class="home-insight-list">${latest.map((article) => `<article class="home-insight-card">${articleImage(article.meta)}<div class="blog-meta"><span>${escapeHtml(article.meta.category)}</span>${article.isDraft ? `<span class="review-badge">${english ? 'Review draft' : '검토용 초안'}</span>` : `<time datetime="${article.meta.published}">${article.meta.published}</time>`}</div><h3><a href="${articlePath(article, locale)}">${escapeHtml(article.meta.title)}</a></h3><p>${escapeHtml(article.meta.description)}</p><a class="svc-link" href="${articlePath(article, locale)}">${english ? 'Read article' : '글 읽기'} →</a></article>`).join('')}</div>` : `<div class="blog-empty"><strong>${english ? 'No published articles yet.' : '아직 공개된 글이 없습니다.'}</strong><p>${english ? 'Articles appear here after editorial and source review.' : '검토와 출처 확인을 마친 글부터 게시합니다.'}</p></div>`;
   return `<!-- BLOG_LATEST_START -->\n<section class="section home-insights" id="insights" aria-labelledby="insights-h2"><div class="container"><p class="kicker">ITING INSIGHTS</p><h2 id="insights-h2">${english ? 'Latest insights' : '최신 인사이트'}</h2>${body}<p class="home-insights-more"><a class="svc-link" href="${english ? '/en/blog/' : '/blog/'}">${english ? 'View all insights' : '모든 인사이트 보기'} →</a></p></div></section>\n<!-- BLOG_LATEST_END -->`;
 }
 
@@ -205,12 +209,14 @@ function renderEnglish(source, file) {
   });
   html = html.replace(/alt="[^"]*"\s+data-en-alt="([^"]*)"/g, 'alt="$1" data-en-alt="$1"');
   html = html.replace(/aria-label="[^"]*"\s+data-en-label="([^"]*)"/g, 'aria-label="$1" data-en-label="$1"');
-  html = html.replace('content="ko_KR"', 'content="en_US"');
+  html = html.replace('property="og:locale" content="ko_KR"', 'property="og:locale" content="en_US"');
+  html = html.replace('property="og:locale:alternate" content="en_US"', 'property="og:locale:alternate" content="ko_KR"');
   if (file === 'index.html') {
     html = html.replace('<link rel="canonical" href="https://www.itingcomms.com/">', '<link rel="canonical" href="https://www.itingcomms.com/en/">');
     html = html.replace('<meta property="og:url" content="https://www.itingcomms.com/">', '<meta property="og:url" content="https://www.itingcomms.com/en/">');
     html = html.replace('href="/en/" hreflang="en" lang="en" aria-label="View this page in English">EN</a>', 'href="/" hreflang="ko" lang="ko" aria-label="이 페이지를 한국어로 보기">KO</a>');
     html = html.replaceAll('href="/privacy.html"', 'href="/en/privacy.html"').replaceAll('href="/terms.html"', 'href="/en/terms.html"');
+    html = html.replaceAll('href="/services/', 'href="/en/services/').replaceAll('href="/about/', 'href="/en/about/');
     html = html.replaceAll('href="/blog/', 'href="/en/blog/').replaceAll('href="/feed.xml"', 'href="/en/feed.xml"');
   } else {
     html = html.replace(`<link rel="canonical" href="https://www.itingcomms.com/${file}">`, `<link rel="canonical" href="https://www.itingcomms.com/en/${file}">`);
@@ -249,6 +255,7 @@ async function readArticles() {
     const article = parseFrontMatter(await readFile(path.join(contentDir, filename), 'utf8'), filename);
     if (String(article.meta.draft).toLowerCase() !== 'false') continue;
     validateArticle(article);
+    await checkArticleImageFile(article.meta, root, filename);
     published.push({ ...article, isDraft: false });
   }
   published.sort((a, b) => b.meta.published.localeCompare(a.meta.published));
@@ -260,6 +267,7 @@ async function readArticles() {
     for (const filename of draftEntries) {
       const article = parseFrontMatter(await readFile(path.join(draftDir, filename), 'utf8'), `drafts/${filename}`);
       validateArticle(article, { draft: true });
+      await checkArticleImageFile(article.meta, root, filename);
       drafts.push({ ...article, isDraft: true });
     }
   }
@@ -274,6 +282,7 @@ async function readArticles() {
     const article = parseFrontMatter(await readFile(path.join(englishContentDir, filename), 'utf8'), `en/${filename}`);
     if (String(article.meta.draft).toLowerCase() !== 'false') continue;
     validateArticle(article, { categoryNames: allowedEnglishCategories });
+    await checkArticleImageFile(article.meta, root, `en/${filename}`);
     englishPublished.push({ ...article, isDraft: false });
   }
   englishPublished.sort((a, b) => b.meta.published.localeCompare(a.meta.published));
@@ -282,6 +291,7 @@ async function readArticles() {
     const translation = englishBySlug.get(article.meta.slug);
     if (!translation) throw new Error(`${article.filename}: published article is missing an English translation`);
     if (translation.meta.published !== article.meta.published || translation.meta.updated !== article.meta.updated) throw new Error(`${article.filename}: Korean and English dates must match`);
+    for (const key of ['image', 'image_width', 'image_height']) if (translation.meta[key] !== article.meta[key]) throw new Error(`${article.filename}: Korean and English ${key} must match`);
     const category = categories.find(({ name }) => name === article.meta.category);
     if (translation.meta.category !== category?.enName) throw new Error(`${article.filename}: Korean and English categories do not match`);
   }
@@ -370,10 +380,10 @@ async function injectHomepage(articles, locale = 'ko') {
   await writeFile(indexPath, source.replace(/<!-- BLOG_LATEST_START -->[\s\S]*?<!-- BLOG_LATEST_END -->/, latestSection(articles, locale)));
 }
 
-async function buildDiscovery(published, englishPublished) {
-  const today = new Date().toISOString().slice(0, 10);
-  const staticUrls = ['/', '/en/', '/blog/', '/en/blog/', ...categories.flatMap(({ slug }) => [`/blog/category/${slug}/`, `/en/blog/category/${slug}/`]), '/privacy.html', '/en/privacy.html', '/terms.html', '/en/terms.html'];
-  const urls = staticUrls.map((url) => `  <url><loc>${siteUrl}${url}</loc><lastmod>${today}</lastmod></url>`);
+async function buildDiscovery(published, englishPublished, servicePaths) {
+  const staticUrls = [...servicePaths, '/', '/en/', '/blog/', '/en/blog/', ...categories.flatMap(({ slug }) => [`/blog/category/${slug}/`, `/en/blog/category/${slug}/`]), '/privacy.html', '/en/privacy.html', '/terms.html', '/en/terms.html'];
+  // Do not refresh static lastmod on unrelated blog builds; omit when no reliable per-page date is available.
+  const urls = staticUrls.map((url) => `  <url><loc>${siteUrl}${url}</loc></url>`);
   for (const { meta } of published) urls.push(`  <url><loc>${siteUrl}/blog/${meta.slug}/</loc><lastmod>${meta.updated || meta.published}</lastmod></url>`);
   for (const { meta } of englishPublished) urls.push(`  <url><loc>${siteUrl}/en/blog/${meta.slug}/</loc><lastmod>${meta.updated || meta.published}</lastmod></url>`);
   await writeFile(path.join(outputRoot, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
@@ -390,5 +400,6 @@ await buildBlog(articles);
 await injectHomepage(reviewFlag ? articles.all : articles.published);
 await buildLocales();
 await injectHomepage(articles.englishPublished, 'en');
-await buildDiscovery(articles.published, articles.englishPublished);
+const servicePaths = await buildServicePages(root, outputRoot);
+await buildDiscovery(articles.published, articles.englishPublished, servicePaths);
 console.log(`Built ${reviewFlag ? 'private review' : 'public'} site with ${articles.published.length} Korean, ${articles.englishPublished.length} English, and ${articles.drafts.length} draft post(s) at ${outputRoot}.`);

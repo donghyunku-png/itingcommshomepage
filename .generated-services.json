@@ -1,0 +1,14 @@
+{
+  "paths": [
+    "/services/",
+    "/services/geo-marketing/",
+    "/services/performance-marketing/",
+    "/services/event-marketing/",
+    "/about/",
+    "/en/services/",
+    "/en/services/geo-marketing/",
+    "/en/services/performance-marketing/",
+    "/en/services/event-marketing/",
+    "/en/about/"
+  ]
+}

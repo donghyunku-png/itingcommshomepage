@@ -7,6 +7,11 @@ author: "ITING Communications"
 published: ""
 updated: ""
 draft: true
+image: ""
+image_alt: ""
+image_caption: ""
+image_width: ""
+image_height: ""
 sources:
 ---
 

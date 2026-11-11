@@ -7,6 +7,9 @@
     "check": "node scripts/check-site.mjs",
     "test:contact": "node scripts/test-contact-form.mjs",
     "build:review": "node scripts/build-site.mjs --include-drafts --output-root /tmp/iting-site-review",
-    "check:review": "node scripts/check-site.mjs --root /tmp/iting-site-review"
+    "check:review": "node scripts/check-site.mjs --root /tmp/iting-site-review",
+    "test:discovery": "node scripts/test-discovery.mjs",
+    "test:images": "node scripts/test-article-images.mjs && node scripts/test-image-build.mjs",
+    "test": "npm run check && npm run test:contact && npm run test:discovery && npm run test:images"
   }
 }

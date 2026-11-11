@@ -48,3 +48,15 @@ npm run build && npm run check
 ## 배포
 
 기존 GitHub Pages 연동과 `CNAME`의 `www.itingcomms.com`을 그대로 사용합니다. 별도 저장소 워크플로 파일은 없으며 GitHub의 내장 `pages-build-deployment`가 `main` 브랜치 push를 감지해 정적 파일을 배포합니다. Pages 쪽에서 이 Node 생성기를 대신 실행하지 않으므로, 반드시 위 명령으로 만든 결과 파일까지 커밋한 뒤 push해야 합니다. 이 저장소에는 배포 토큰이나 외부 CMS 인증 정보가 없습니다.
+
+## 서비스 상세 페이지와 검색 검증
+
+`content/service-pages.json`이 GEO·퍼포먼스 마케팅·행사 서비스의 한국어·영문 원본입니다. `scripts/build-service-pages.mjs`는 `/services/`, 서비스별 상세 URL과 `/about/`, 각각의 영문 페이지를 생성합니다. 생성 HTML을 직접 고치지 말고 원본과 생성기를 수정한 뒤 빌드하세요.
+
+- `npm test`: 기본 사이트 검사, 문의 폼 단위 테스트, 40개 현재 sitemap 페이지의 canonical·hreflang·H1·내부 앵커·FAQ 본문 일치 검사, 이미지 렌더링·메타데이터 검사를 실행합니다.
+- `sitemap.xml`의 글 수정일은 원문 날짜를 사용합니다. 정적 페이지의 신뢰할 만한 개별 변경일이 없으면 lastmod를 생략해 매번 최신 날짜로 오인시키지 않습니다.
+- robots.txt의 검색 봇 명시는 허용 의도를 문서화합니다. 기존 wildcard도 이미 접근을 허용했으므로, 명시 항목 추가 자체를 차단 해제나 추천 보장으로 설명하지 않습니다. llms.txt 역시 보조 탐색 파일이며 필수 AI 검색 설정이 아닙니다.
+- 배포 후 Google Search Console의 URL 검사와 sitemap 상태, Bing Webmaster Tools의 색인 상태 등을 계정 접근 권한 내에서 확인하세요. 공개 URL의 200 응답과 구조 검증은 실제 색인·AI 인용의 증거가 아닙니다.
+- 모든 주장에 확인 가능한 출처·공개 승인 범위를 유지합니다. 구체적 고객 사례, 성과 수치와 추천사를 추가하려면 해당 근거와 공개 권한을 먼저 확인해야 합니다.
+
+공식 참고: [Google AI features](https://developers.google.com/search/docs/appearance/ai-features), [OpenAI crawlers](https://developers.openai.com/api/docs/bots), [Anthropic crawlers](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), [Perplexity crawlers](https://docs.perplexity.ai/docs/resources/perplexity-crawlers).

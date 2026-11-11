@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import { articleImage, imageMetadata, validateArticleImage, checkArticleImageFile } from './article-images.mjs';
+const fixture = {image:'/assets/blog/example/hero.webp',image_alt:'An AI <illustration> & example',image_caption:'AI-generated illustration.',image_width:'1536',image_height:'1024'};
+validateArticleImage({});
+validateArticleImage(fixture);
+assert.equal(articleImage({}), '');
+assert.match(articleImage(fixture,{hero:true}), /fetchpriority="high"/);
+assert.match(articleImage(fixture,{hero:true}), /AI-generated illustration\./);
+assert.match(articleImage(fixture), /loading="lazy"/);
+assert.match(articleImage(fixture), /An AI &lt;illustration&gt; &amp; example/);
+assert.match(imageMetadata(fixture,'https://www.itingcomms.com'), /og:image:width/);
+assert.match(imageMetadata({},'https://www.itingcomms.com'), /assets\/logo.png/);
+for (const image of ['https://example.com/a.png','/assets/blog/../secret.png','/assets/blog/a.svg','/private/hero.png']) assert.throws(()=>validateArticleImage({...fixture,image}));
+for (const field of ['image_alt','image_caption','image_width','image_height']) assert.throws(()=>validateArticleImage({...fixture,[field]:''}));
+for (const image_width of ['0','-1','a','12001']) assert.throws(()=>validateArticleImage({...fixture,image_width}));
+assert.throws(()=>validateArticleImage({image_alt:'orphan'}));
+await assert.rejects(()=>checkArticleImageFile(fixture, process.cwd(),'test'));
+console.log('Article image tests passed: rendering, metadata, escaping, validation, and missing assets.');
