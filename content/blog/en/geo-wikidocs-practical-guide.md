@@ -22,7 +22,7 @@ sources:
 
 A brand mention, a citation of an official page and a recommendation are different observations. Turning AI search into a practical marketing discipline requires clear questions, inspectable evidence and a repeatable way to decide what to improve.
 
-ITING Communications introduces **[『AI 검색 시대의 글로벌 시장에서 발견되고 선택되는 방법』](https://wikidocs.net/book/22144)**, a Korean-language guide whose title translates as “How to be discovered and chosen in global markets in the AI search era.” Written by Donghyun Ku, it brings together SEO and GEO fundamentals, AI search across Korea, China and global markets, and practical measurement and operations. The linked book is in Korean; this article is an English introduction, not an English edition of the book.
+ITING Communications introduces [『AI 검색 시대의 글로벌 시장에서 발견되고 선택되는 방법』](https://wikidocs.net/book/22144), a Korean-language guide whose title translates as “How to be discovered and chosen in global markets in the AI search era.” Written by Donghyun Ku, it brings together SEO and GEO fundamentals, AI search across Korea, China and global markets, and practical measurement and operations. The linked book is in Korean; this article is an English introduction, not an English edition of the book.
 
 ## Six parts, from concepts to operations
 
@@ -49,6 +49,6 @@ The book is a learning resource for understanding concepts and building a practi
 
 This is a company introduction, and ITING Communications has a commercial interest in GEO Inside. Neither the book nor this article guarantees AI recommendations, citations, rankings or revenue. Changes in observed answers do not by themselves establish that a website edit caused them. Readers should review sources and updates before applying guidance, because platform capabilities and policies can change.
 
-**[Read the Korean-language GEO guide on WikiDocs](https://wikidocs.net/book/22144)**
+[Read the Korean-language GEO guide on WikiDocs](https://wikidocs.net/book/22144)
 
 For company and service information, visit [About ITING Communications](https://www.itingcomms.com/en/about/) and [GEO services](https://www.itingcomms.com/en/geo/).
