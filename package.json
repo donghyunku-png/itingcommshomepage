@@ -10,6 +10,7 @@
     "check:review": "node scripts/check-site.mjs --root /tmp/iting-site-review",
     "test:discovery": "node scripts/test-discovery.mjs",
     "test:images": "node scripts/test-article-images.mjs && node scripts/test-image-build.mjs",
-    "test": "npm run check && npm run test:contact && npm run test:discovery && npm run test:images"
+    "test": "npm run check && npm run test:contact && npm run test:discovery && npm run test:images && npm run test:locations",
+    "test:locations": "node scripts/test-company-locations.mjs"
   }
 }
