@@ -19,7 +19,7 @@ try {
   for(const folder of ['content/blog','content/blog/en']) {
     const file=path.join(temp,folder,'ai-search-clicks-measurement.md');
     const source=await readFile(file,'utf8');
-    await writeFile(file,source.replace('\ndraft: false','\n'+Object.entries(meta).map(([k,v])=>`${k}: "${v}"`).join('\n')+'\ndraft: false'));
+    await writeFile(file,source.replace(/(published|updated): "[^"]+"/g, `$1: "${new Date().toISOString().slice(0,10)}"`).replace('\ndraft: false','\n'+Object.entries(meta).map(([k,v])=>`${k}: "${v}"`).join('\n')+'\ndraft: false'));
   }
   execFileSync(process.execPath,['scripts/build-site.mjs'],{cwd:temp,stdio:'pipe'});
   for (const locale of ['', 'en/']) {
