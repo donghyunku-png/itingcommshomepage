@@ -60,3 +60,13 @@ for (const prefix of ['', '/en']) {
 }
 assert((await htmlFor('/en/')).includes('property="og:locale:alternate" content="ko_KR"'),'English alternate locale');
 console.log(`Discovery tests passed for ${urls.length} sitemap pages: metadata, canonical, hreflang, fragments, visible FAQ, and service links.`);
+
+for (const prefix of ['', '/en']) {
+  for (const category of ['ax', 'geo']) {
+    const html = await htmlFor(prefix+'/blog/category/'+category+'/');
+    assert(html.includes('id="category-guide-heading"'), 'visible category guide');
+    assert(html.includes('href="'+prefix+'/blog/ai-visibility-repeat-measurement/"'), 'real related link');
+    assert(text(html).length > 650, 'meaningful category context');
+  }
+}
+console.log('Category guide tests passed.');

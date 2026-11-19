@@ -182,6 +182,61 @@ function articleList(articles, locale = 'ko') {
   }).join('')}</div>`;
 }
 
+const categoryGuides = {
+  "geo": {
+    "ko": {
+      "title": "GEO를 처음 검토할 때 읽는 순서",
+      "intro": "생성형 엔진 최적화(GEO)는 브랜드 정보를 명확하게 정리하고 AI 답변이 이를 어떻게 사용하는지 확인하는 일에서 출발합니다. 브랜드 언급, 출처 인용, 홈페이지 유입, 구매는 서로 다른 결과입니다.",
+      "steps": [
+        "고객 질문, 언어, 관측할 엔진과 기간을 먼저 정합니다.",
+        "공식 상품·서비스 설명, 크롤러 접근, 확인 가능한 출처를 살펴봅니다.",
+        "같은 조건으로 반복 관측하고 변동성을 유입·매출과 구분해 보고합니다."
+      ],
+      "note": "아래 글은 진단과 개선을 위한 안내이며 AI 추천, 검색 순위나 매출을 보장하지 않습니다."
+    },
+    "en": {
+      "title": "A practical starting point for GEO",
+      "intro": "Generative engine optimization starts with clear brand information and observing how AI answers use it. A brand mention, a cited source, a website visit and a purchase are different outcomes.",
+      "steps": [
+        "Define customer questions, language, engines and the observation period.",
+        "Check official product facts, crawl access and visible sources.",
+        "Repeat observations under comparable conditions and distinguish uncertainty from traffic and sales."
+      ],
+      "note": "These articles support diagnosis and improvement; they do not guarantee AI recommendations, search rankings or revenue."
+    }
+  },
+  "ax": {
+    "ko": {
+      "title": "AI로 업무를 자동화하기 전 확인할 것",
+      "intro": "AX(AI 전환)는 챗봇을 추가하는 일을 넘어 업무 수행 방식을 바꾸는 과정입니다. 반복 업무 하나부터 시작하고 책임자를 정한 뒤 기존 방식과 결과를 비교하는 것이 좋습니다.",
+      "steps": [
+        "입력 자료, 필요한 결과물, 담당자와 예외를 적고 수동 처리 방법을 남깁니다.",
+        "고객정보와 비공개 자료의 사용 가능 범위를 확인하고 승인된 도구에 필요한 최소 자료만 제공합니다.",
+        "초안 생성과 외부 게시·결제·계정 변경을 구분하고 승인 및 중단 조건을 정합니다.",
+        "생성 속도뿐 아니라 수정 시간, 오류와 미처리 예외를 기록합니다. 작은 시험 운영 후 범위를 넓힙니다."
+      ],
+      "note": "이 체크리스트는 고객 수행 사례가 아닌 입문 안내입니다. 아래는 다른 카테고리에서 함께 읽을 글입니다."
+    },
+    "en": {
+      "title": "Before automating a task with AI",
+      "intro": "AI transformation (AX) changes how work is done, rather than simply adding a chatbot. Start with one repeated task, keep responsibility clear and compare the outcome with the existing process.",
+      "steps": [
+        "List the input, expected output, owner and exceptions. Keep a manual fallback available.",
+        "Check permitted use of customer or confidential information. Use approved tools and minimum necessary data.",
+        "Separate draft creation from publication, payment and account changes. Define approval and stop conditions.",
+        "Track correction time, errors and unresolved exceptions, not just generation speed. Expand after a small pilot."
+      ],
+      "note": "This checklist is an introductory guide, not a customer case study. The links below are related reading from other categories."
+    }
+  }
+};
+function categoryGuide(active, locale = 'ko') {
+  const guide = categoryGuides[active]?.[locale];
+  if (!guide) return '';
+  const prefix = locale === 'en' ? '/en' : '';
+  return '<section class="category-guide article-body" aria-labelledby="category-guide-heading"><h2 id="category-guide-heading">'+escapeHtml(guide.title)+'</h2><p>'+escapeHtml(guide.intro)+'</p><ol>'+guide.steps.map(t=>'<li>'+escapeHtml(t)+'</li>').join('')+'</ol><p>'+escapeHtml(guide.note)+'</p><ul><li><a href="'+prefix+'/blog/ai-visibility-repeat-measurement/">'+(locale==='en'?'Why one AI search measurement is not enough':'AI 검색 순위, 한 번의 측정으로 성과를 판단하지 마세요')+'</a></li><li><a href="'+prefix+'/blog/ai-search-crawlers-training-controls/">'+(locale==='en'?'AI search access and model training are different controls':'AI 검색 노출과 AI 학습 허용, 같은 설정이 아닙니다')+'</a></li></ul></section>';
+}
+
 function blogShell({ articles, active = 'all', title, description, isReview = false, locale = 'ko' }) {
   const english = locale === 'en';
   const robots = isReview ? '<meta name="robots" content="noindex,nofollow,noarchive">' : '<meta name="robots" content="index,follow">';
@@ -190,7 +245,7 @@ function blogShell({ articles, active = 'all', title, description, isReview = fa
   const koreanUrl = `${siteUrl}${localPath}`;
   const englishUrl = `${siteUrl}/en${localPath}`;
   const alternates = isReview ? '' : `<link rel="alternate" hreflang="ko" href="${koreanUrl}"><link rel="alternate" hreflang="en" href="${englishUrl}"><link rel="alternate" hreflang="x-default" href="${koreanUrl}">`;
-  return `<!doctype html><html lang="${english ? 'en' : 'ko'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02103a"><title>${escapeHtml(title)} | ITING Insights</title><meta name="description" content="${escapeHtml(description)}">${robots}${isReview ? '' : `<link rel="canonical" href="${siteUrl}${canonicalPath}">${alternates}`}<link rel="alternate" type="application/rss+xml" title="ITING Insights" href="${english ? '/en/feed.xml' : '/feed.xml'}"><meta property="og:type" content="website"><meta property="og:locale" content="${english ? 'en_US' : 'ko_KR'}"><meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}">${isReview ? '' : `<meta property="og:url" content="${siteUrl}${canonicalPath}">`}<meta property="og:image" content="${siteUrl}/assets/logo.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/styles.css"></head><body>${siteHeader(locale, english ? localPath : `/en${localPath}`)}${isReview ? '<div class="review-ribbon">PRIVATE REVIEW · 공개 전 초안 포함</div>' : ''}<section class="blog-profile"><div class="container blog-profile-inner"><div><p class="kicker">ITING INSIGHTS</p><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p></div><div class="blog-profile-seal" aria-hidden="true">ITING</div></div></section><main class="container blog-shell">${filterNav(active, locale)}${articleList(articles, locale)}</main>${siteFooter(locale)}</body></html>`;
+  return `<!doctype html><html lang="${english ? 'en' : 'ko'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#02103a"><title>${escapeHtml(title)} | ITING Insights</title><meta name="description" content="${escapeHtml(description)}">${robots}${isReview ? '' : `<link rel="canonical" href="${siteUrl}${canonicalPath}">${alternates}`}<link rel="alternate" type="application/rss+xml" title="ITING Insights" href="${english ? '/en/feed.xml' : '/feed.xml'}"><meta property="og:type" content="website"><meta property="og:locale" content="${english ? 'en_US' : 'ko_KR'}"><meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}">${isReview ? '' : `<meta property="og:url" content="${siteUrl}${canonicalPath}">`}<meta property="og:image" content="${siteUrl}/assets/logo.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/styles.css"></head><body>${siteHeader(locale, english ? localPath : `/en${localPath}`)}${isReview ? '<div class="review-ribbon">PRIVATE REVIEW · 공개 전 초안 포함</div>' : ''}<section class="blog-profile"><div class="container blog-profile-inner"><div><p class="kicker">ITING INSIGHTS</p><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p></div><div class="blog-profile-seal" aria-hidden="true">ITING</div></div></section><main class="container blog-shell">${filterNav(active, locale)}${categoryGuide(active, locale)}${articleList(articles, locale)}</main>${siteFooter(locale)}</body></html>`;
 }
 
 function latestSection(articles, locale = 'ko') {

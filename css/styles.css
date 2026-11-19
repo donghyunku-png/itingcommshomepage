@@ -662,3 +662,9 @@ html[data-lang="en"] [data-en]:not([data-keep]){/* swap handled by JS */}
 @media(min-width:521px) and (max-width:720px){.blog-row>.article-thumbnail{order:initial}}
 
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* Editorial context for category landing pages. */
+.category-guide{margin:0 0 32px;padding:24px 28px;border:1px solid #e5eaf3;border-radius:var(--radius);background:#fbfcff}
+.category-guide h2{margin-top:0;font-size:26px}
+.category-guide p:last-child{margin-bottom:0}
+@media(max-width:520px){.category-guide{padding:20px}.category-guide h2{font-size:23px}}
