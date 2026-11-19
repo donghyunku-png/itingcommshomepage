@@ -60,3 +60,13 @@ npm run build && npm run check
 - 모든 주장에 확인 가능한 출처·공개 승인 범위를 유지합니다. 구체적 고객 사례, 성과 수치와 추천사를 추가하려면 해당 근거와 공개 권한을 먼저 확인해야 합니다.
 
 공식 참고: [Google AI features](https://developers.google.com/search/docs/appearance/ai-features), [OpenAI crawlers](https://developers.openai.com/api/docs/bots), [Anthropic crawlers](https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler), [Perplexity crawlers](https://docs.perplexity.ai/docs/resources/perplexity-crawlers).
+
+## IndexNow change notifications
+
+The `IndexNow changed pages` workflow runs after a successful GitHub Pages deployment, or via manual dispatch. It verifies that the latest completed Pages build matches main before sending. The public root text file is the IndexNow ownership proof supplied by the site owner, not an account password.
+
+Only canonical HTML URLs present in the previous or current sitemap and changed in git are notified. Deleted pages previously in the sitemap are included; scripts, drafts, feeds, key files and unchanged pages are excluded. The initial checkpoint is the commit before the four AX/GEO category improvements, so setup initially notifies those four pages only. New pages must be included in sitemap.xml.
+
+An artifact stores the last accepted commit. Failed submissions do not advance it, so a subsequent deployment or manual workflow rerun catches up. HTTP 429, server failures and network errors have bounded retries. Concurrent notifications are serialized. A repeated dispatch after success has no changed URLs. Rare duplicate delivery is possible if a request is accepted but the response or checkpoint upload is lost; IndexNow notifications are not exactly-once delivery. Checkpoints expire after 90 days; after expiry the workflow safely falls back to the initial baseline and may resend changed URLs.
+
+HTTP 200 means receipt; 202 means receipt with ownership validation pending. Neither proves crawling, indexing, ranking or AI recommendations. Submission failures appear as failed GitHub Actions runs. Review 202 validation in Bing Webmaster Tools. Never manually submit private/draft URLs. `DRY_RUN=1 node scripts/indexnow.mjs` previews without external notification. `npm run test:indexnow` uses mocked requests only.

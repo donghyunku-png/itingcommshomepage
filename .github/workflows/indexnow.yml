@@ -1,0 +1,50 @@
+name: IndexNow changed pages
+on:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pages: read
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: false
+jobs:
+  notify:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify latest deployment and find checkpoint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/pages/builds/latest" > /tmp/pages.json
+          target=$(jq -r '.commit' /tmp/pages.json)
+          test "$(jq -r '.status' /tmp/pages.json)" = built
+          test "$target" = "$(git rev-parse HEAD)"
+          echo "TARGET_SHA=$target" >> "$GITHUB_ENV"
+          artifact=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=indexnow-checkpoint&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | reverse | .[0].id // empty')
+          if [ -n "$artifact" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact/zip" > /tmp/checkpoint.zip
+            baseline=$(unzip -p /tmp/checkpoint.zip sha)
+            echo "BASELINE_SHA=$baseline" >> "$GITHUB_ENV"
+          fi
+      - run: node scripts/test-indexnow.mjs
+      - name: Notify only changed public pages
+        run: node scripts/indexnow.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-checkpoint
+          path: /tmp/indexnow-checkpoint/sha
+          retention-days: 90

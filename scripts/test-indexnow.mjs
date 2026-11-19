@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {changedURLs,fileForURL,submit} from './indexnow.mjs';
+const h='https://www.itingcomms.com';
+assert.equal(fileForURL(h+'/'),'index.html');assert.equal(fileForURL(h+'/blog/a/'),'blog/a/index.html');
+assert.throws(()=>fileForURL('https://evil.example/'));assert.throws(()=>fileForURL(h+'/?q=x'));
+assert.deepEqual(changedURLs([h+'/old/',h+'/same/'],[h+'/new/',h+'/same/'],new Set(['old/index.html','new/index.html','scripts/x.mjs'])),[h+'/old/',h+'/new/']);
+assert.deepEqual(changedURLs([h+'/'],[h+'/'],new Set(['index.html'])),[h+'/']);
+let calls=0;assert.equal(await submit({},async()=>({status:++calls===1?429:200,headers:new Headers()}),async()=>{}),200);assert.equal(calls,2);
+assert.equal(await submit({},async()=>({status:202})),202);
+await assert.rejects(submit({},async()=>({status:403})),/403/);
+await assert.rejects(submit({},async()=>({status:503,headers:new Headers()}),async()=>{}),/503/);
+console.log('IndexNow tests passed');
