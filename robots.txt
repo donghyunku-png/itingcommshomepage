@@ -46,3 +46,5 @@ User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://www.itingcomms.com/sitemap.xml
+
+#DaumWebMasterTool:af3de7659d8190604989e0cdaa20dbcfa7a9071fafc232cd6177346925dac73d:HIcNwRrP5YqFZ/r1eI1o/A==
