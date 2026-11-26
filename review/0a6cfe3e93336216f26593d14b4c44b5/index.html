@@ -2,8 +2,9 @@
 (async () => {
 const message=document.getElementById("notice");
 const panel=document.getElementById("document");
-const k=location.hash.slice(1);
-if(!/^[0-9a-f]{64}$/.test(k))return;
+const queryKey=new URLSearchParams(location.search).get("access")||"";
+const k=/^[0-9a-f]{64}$/i.test(queryKey)?queryKey:location.hash.slice(1);
+if(!/^[0-9a-f]{64}$/i.test(k))return;
 const dec=(s)=>Uint8Array.from(atob(s.replace(/-/g,"+").replace(/_/g,"/")),c=>c.charCodeAt(0));
 try {
 const key=await crypto.subtle.importKey("raw",Uint8Array.from(k.match(/../g),x=>parseInt(x,16)),"AES-GCM",false,["decrypt"]);
