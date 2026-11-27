@@ -1,5 +1,6 @@
 {
   "slugs": [
+    "geo-check-number-scope",
     "geo-core-update-comparison",
     "geo-weekly-observation-incheon-01",
     "geo-product-launch-market-dates",
@@ -17,6 +18,7 @@
     "iting-communications-introduction"
   ],
   "englishSlugs": [
+    "geo-check-number-scope",
     "geo-core-update-comparison",
     "geo-weekly-observation-incheon-01",
     "geo-product-launch-market-dates",
